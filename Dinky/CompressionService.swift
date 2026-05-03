@@ -5,6 +5,15 @@ import Foundation
 import ImageIO
 import UniformTypeIdentifiers
 
+struct CompressionGoals {
+    var maxWidth: Int?       // nil = no limit (pixels)
+    var maxFileSizeKB: Int?  // nil = no limit
+    /// Proportional downscale: 0.5 = half, 0.667 = two-thirds, etc. Applied before maxWidth.
+    /// nil = no proportional scaling.
+    var scaleFactor: Double? // nil = no scale
+}
+
+
 struct CompressionResult {
     let outputURL: URL
     let originalSize: Int64
