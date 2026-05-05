@@ -20,6 +20,8 @@
 # Release notes are built from `git log $PREV_GIT_TAG..HEAD` (subjects only, chronological),
 # excluding the “Bump to v$VERSION” commit, so what ships on GitHub matches the repo. Edit the
 # release on GitHub afterward if you want prose or grouping; the list is the source of truth.
+# When adding prose, mention Apple Silicon (M-series) only — Intel Macs are not supported for
+# distributed 2.x builds — so release browsers see hardware requirements at a glance.
 #
 # Commit all app/source changes before running: the tag must point at a tree that includes the full
 # app, not only version-string files.

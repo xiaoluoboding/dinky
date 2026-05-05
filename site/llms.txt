@@ -31,6 +31,7 @@
 
 ## Technical details
 
+- Apple Silicon (M-series Mac) only for distributed 2.x builds; Intel-based Macs are not supported
 - macOS 15 Sequoia or later (liquid glass UI on macOS 26 Tahoe; frosted material fallback on Sequoia)
 - SwiftUI + AppKit; the app uses an in-tree Swift package for shared image code + optional `dinky` CLI (not a remote SPM dependency)
 - 35 MB installed
