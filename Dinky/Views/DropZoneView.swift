@@ -191,13 +191,14 @@ struct DropZoneView: View {
 // MARK: - File card type
 
 private enum FileCardType {
-    case image, video, pdf
+    case image, video, audio, pdf
 
     /// UTTypes aligned with Dinky-supported types (see `MediaType`).
     var workspaceContentType: UTType {
         switch self {
         case .image: return .jpeg
         case .video: return .mpeg4Movie
+        case .audio: return .mp3
         case .pdf:   return .pdf
         }
     }
@@ -225,13 +226,14 @@ private enum IdleFileCardLayout {
     static let animatedCorner: CGFloat = 11
 }
 
-/// Final positions for the 3-card fan (reduce-motion + `playTwoTrips`): left / centre / right with shared baseline. Draw order remains PDF → video → image (back → front).
-private enum IdleThreeCardFan {
+/// Final positions for the 4-card fan (reduce-motion + `playTwoTrips`): left → right with shared baseline. Draw order is PDF → audio → video → image (back → front).
+private enum IdleFourCardFan {
     static let landingY: CGFloat = -80
 
-    static var image: CGSize { CGSize(width: -22, height: landingY - 2) }
-    static var video: CGSize { CGSize(width: 0, height: landingY - 2) }
-    static var pdf: CGSize { CGSize(width: 22, height: landingY - 2) }
+    static var image: CGSize { CGSize(width: -30, height: landingY - 2) }
+    static var video: CGSize { CGSize(width: -10, height: landingY - 2) }
+    static var audio: CGSize { CGSize(width: 10, height: landingY - 2) }
+    static var pdf: CGSize { CGSize(width: 30, height: landingY - 2) }
 }
 
 // MARK: - Finder-style file card (system document icons)
@@ -289,15 +291,19 @@ struct StaticCardStack: View {
         ZStack {
             // PDF — back
             FinderStyleFileCard(type: .pdf, width: IdleFileCardLayout.portraitWidth, height: IdleFileCardLayout.portraitHeight, cornerRadius: IdleFileCardLayout.staticCorner)
-                .offset(x: IdleThreeCardFan.pdf.width, y: IdleThreeCardFan.pdf.height)
-                .rotationEffect(.degrees(7))
-            // Video — middle
+                .offset(x: IdleFourCardFan.pdf.width, y: IdleFourCardFan.pdf.height)
+                .rotationEffect(.degrees(8))
+            // Audio
+            FinderStyleFileCard(type: .audio, width: IdleFileCardLayout.portraitWidth, height: IdleFileCardLayout.portraitHeight, cornerRadius: IdleFileCardLayout.staticCorner)
+                .offset(x: IdleFourCardFan.audio.width, y: IdleFourCardFan.audio.height)
+                .rotationEffect(.degrees(3))
+            // Video
             FinderStyleFileCard(type: .video, width: IdleFileCardLayout.portraitWidth, height: IdleFileCardLayout.portraitHeight, cornerRadius: IdleFileCardLayout.staticCorner)
-                .offset(x: IdleThreeCardFan.video.width, y: IdleThreeCardFan.video.height)
+                .offset(x: IdleFourCardFan.video.width, y: IdleFourCardFan.video.height)
                 .rotationEffect(.degrees(0))
             // Image — front
             FinderStyleFileCard(type: .image, width: IdleFileCardLayout.portraitWidth, height: IdleFileCardLayout.portraitHeight, cornerRadius: IdleFileCardLayout.staticCorner)
-                .offset(x: IdleThreeCardFan.image.width, y: IdleThreeCardFan.image.height)
+                .offset(x: IdleFourCardFan.image.width, y: IdleFourCardFan.image.height)
                 .rotationEffect(.degrees(-7))
         }
     }
@@ -318,12 +324,15 @@ struct IdleAnimation: View {
     @State private var card1Offset  : CGSize  = .zero
     @State private var card2Offset  : CGSize  = .zero
     @State private var card3Offset  : CGSize  = .zero
+    @State private var card4Offset  : CGSize  = .zero
     @State private var card1Angle   : Double  = 0
     @State private var card2Angle   : Double  = 0
     @State private var card3Angle   : Double  = 0
+    @State private var card4Angle   : Double  = 0
     @State private var card1Opacity : Double  = 0
     @State private var card2Opacity : Double  = 0
     @State private var card3Opacity : Double  = 0
+    @State private var card4Opacity : Double  = 0
     @State private var entryCorner  : Corner  = .bottomRight
     @State private var step         : Int     = 0
 
@@ -333,13 +342,19 @@ struct IdleAnimation: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                // card3 — PDF (back; drawn first)
+                // card4 — PDF (back; drawn first)
                 photoCard(type: .pdf)
+                    .offset(card4Offset)
+                    .rotationEffect(.degrees(card4Angle))
+                    .opacity(card4Opacity)
+
+                // card3 — audio
+                photoCard(type: .audio)
                     .offset(card3Offset)
                     .rotationEffect(.degrees(card3Angle))
                     .opacity(card3Opacity)
 
-                // card2 — video (middle)
+                // card2 — video
                 photoCard(type: .video)
                     .offset(card2Offset)
                     .rotationEffect(.degrees(card2Angle))
@@ -423,7 +438,7 @@ struct IdleAnimation: View {
     private func runLoop() async {
         await sleep(200)
         guard !Task.isCancelled else { return }
-        // Single sequence: cursor enters, drops image → video → pdf, then exits off-screen.
+        // Single sequence: cursor enters, drops image → video → audio → pdf, then exits off-screen.
         // Cards remain visible as the final resting state until the user hovers back in.
         await playTwoTrips()
         onLoop()
@@ -466,7 +481,7 @@ struct IdleAnimation: View {
         }
         await sleep(300)
 
-        withAnimation(.easeOut(duration: 0.18)) { card1Opacity = 0; card2Opacity = 0; card3Opacity = 0 }
+        withAnimation(.easeOut(duration: 0.18)) { card1Opacity = 0; card2Opacity = 0; card3Opacity = 0; card4Opacity = 0 }
         await sleep(220)
     }
 
@@ -512,7 +527,7 @@ struct IdleAnimation: View {
         }
         await sleep(280)
 
-        withAnimation(.easeOut(duration: 0.16)) { card1Opacity = 0; card2Opacity = 0; card3Opacity = 0 }
+        withAnimation(.easeOut(duration: 0.16)) { card1Opacity = 0; card2Opacity = 0; card3Opacity = 0; card4Opacity = 0 }
         await sleep(200)
     }
 
@@ -524,9 +539,9 @@ struct IdleAnimation: View {
         let travel = travelDuration()
 
         // If cards from a previous run are still on screen, fade them out before resetting layout
-        if card1Opacity > 0 || card2Opacity > 0 || card3Opacity > 0 {
+        if card1Opacity > 0 || card2Opacity > 0 || card3Opacity > 0 || card4Opacity > 0 {
             withAnimation(.easeOut(duration: 0.20)) {
-                card1Opacity = 0; card2Opacity = 0; card3Opacity = 0
+                card1Opacity = 0; card2Opacity = 0; card3Opacity = 0; card4Opacity = 0
             }
             await sleep(220)
         }
@@ -545,7 +560,7 @@ struct IdleAnimation: View {
 
         withAnimation(.spring(response: 0.26, dampingFraction: 0.55)) {
             cursorLifted = true
-            card1Offset  = CGSize(width: IdleThreeCardFan.image.width, height: IdleThreeCardFan.image.height)
+            card1Offset  = CGSize(width: IdleFourCardFan.image.width, height: IdleFourCardFan.image.height)
             card1Angle   = -7
         }
         await sleep(260)
@@ -568,7 +583,7 @@ struct IdleAnimation: View {
 
         withAnimation(.spring(response: 0.28, dampingFraction: 0.52)) {
             cursorLifted = true
-            card2Offset  = CGSize(width: IdleThreeCardFan.video.width, height: IdleThreeCardFan.video.height)
+            card2Offset  = CGSize(width: IdleFourCardFan.video.width, height: IdleFourCardFan.video.height)
             card2Angle   = 0
         }
         await sleep(260)
@@ -577,22 +592,45 @@ struct IdleAnimation: View {
         }
         await sleep(340)
 
-        // Trip 3 — PDF (back of fan)
+        // Trip 3 — audio (between video and back PDF)
         card3Offset = CGSize(width: s.width + 36 * g, height: s.height + 22)
         card3Angle  = 24 * g
         withAnimation(.easeIn(duration: 0.08)) { card3Opacity = 1 }
 
         withAnimation(.timingCurve(0.22, 0.0, 0.28, 1.0, duration: travel)) {
-            cursorOffset = landing
-            card3Offset  = CGSize(width: 22 * g, height: lh - 2)
-            card3Angle   = 7 * g
+            cursorOffset = CGSize(width: 4 * g, height: lh + 2)
+            card3Offset  = CGSize(width: 22 * g, height: lh - 4)
+            card3Angle   = 5 * g
         }
         await sleep(Int(travel * 1000))
 
         withAnimation(.spring(response: 0.28, dampingFraction: 0.50)) {
             cursorLifted = true
-            card3Offset  = CGSize(width: IdleThreeCardFan.pdf.width, height: IdleThreeCardFan.pdf.height)
-            card3Angle   = 7
+            card3Offset  = CGSize(width: IdleFourCardFan.audio.width, height: IdleFourCardFan.audio.height)
+            card3Angle   = 3
+        }
+        await sleep(260)
+        withAnimation(.timingCurve(0.55, 0.0, 1.0, 1.0, duration: 0.40)) {
+            cursorOffset = s; cursorLifted = false
+        }
+        await sleep(340)
+
+        // Trip 4 — PDF (back of fan)
+        card4Offset = CGSize(width: s.width + 42 * g, height: s.height + 26)
+        card4Angle  = 28 * g
+        withAnimation(.easeIn(duration: 0.08)) { card4Opacity = 1 }
+
+        withAnimation(.timingCurve(0.22, 0.0, 0.28, 1.0, duration: travel)) {
+            cursorOffset = landing
+            card4Offset  = CGSize(width: 28 * g, height: lh - 2)
+            card4Angle   = 8 * g
+        }
+        await sleep(Int(travel * 1000))
+
+        withAnimation(.spring(response: 0.28, dampingFraction: 0.50)) {
+            cursorLifted = true
+            card4Offset  = CGSize(width: IdleFourCardFan.pdf.width, height: IdleFourCardFan.pdf.height)
+            card4Angle   = 8
         }
         await sleep(460)
 
@@ -625,7 +663,7 @@ struct IdleAnimation: View {
         card1Offset  = c1;   card2Offset  = c2
         card1Angle   = a1;   card2Angle   = a2
         card1Opacity = op1;  card2Opacity = op2
-        card3Opacity = 0
+        card3Opacity = 0;    card4Opacity = 0
         cursorLifted = false
     }
 

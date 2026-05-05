@@ -1651,6 +1651,9 @@
     "A temporary re-save was %@ than your file. That version was discarded — your original was not replaced.\n\nPreserve text and links first runs stream optimization (bundled qpdf), then a PDFKit rewrite if needed. Many modern PDFs are already tightly compressed, so this mode often cannot shrink them further. It is not a guaranteed size optimizer. In the sidebar (or below), you can try Advanced (experimental) passes for a bit more shrink while staying in preserve mode. For reliably smaller files, use “Smallest file (flatten pages)”, or the flatten button below." : {
       "comment" : "Zero-gain sheet: preserve PDF; first format arg is size phrase."
     },
+    "About & Support" : {
+      "comment" : "Settings sidebar item."
+    },
     "About as much as a handful of smartphone shots." : {
       "comment" : "Batch summary savings perspective; rough size analogy."
     },
@@ -1741,7 +1744,7 @@
       "comment" : "Batch summary savings perspective; rough size analogy."
     },
     "Accessibility" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1825,6 +1828,7 @@
     },
     "Add" : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1910,7 +1914,7 @@
       "comment" : "Sidebar PDF OCR helper."
     },
     "Adjust scope" : {
-      "comment" : "Accessibility: sidebar Images/PDFs/Videos/Output scope."
+      "comment" : "Accessibility: sidebar media scope icons."
     },
     "Adjusts compression from each file: image encoding from content, video strength from resolution and bitrate, PDF tier from the document." : {
       "comment" : "Settings UI.",
@@ -2389,6 +2393,9 @@
         }
       }
     },
+    "All settings…" : {
+      "comment" : "Sidebar menu: open settings."
+    },
     "Already at minimum size" : {
       "comment" : "Skipped detail headline.",
       "localizations" : {
@@ -2782,6 +2789,7 @@
     },
     "Appearance" : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3088,9 +3096,6 @@
         }
       }
     },
-    "Applies to images and video only. PDFs always keep the result when it is smaller than the original (even a small %), because PDF savings are often modest on preserve mode or threshold-sized on flatten." : {
-      "comment" : "Settings UI: minimum savings threshold scope."
-    },
     "Applies to images, videos, and PDFs. Skip files where savings fall below this threshold." : {
       "comment" : "Settings UI.",
       "extractionState" : "stale",
@@ -3323,8 +3328,40 @@
         }
       }
     },
+    "audio" : {
+      "comment" : "Results row: generic audio type chip."
+    },
     "Audio" : {
-      "comment" : "Settings UI: Media video subsection."
+      "comment" : "Compression confirm: media section.\nOutcome map row title.\nPreset list: applies to audio files.\nSettings UI: Media video subsection.\nSettings UI: media type segment.\nSidebar quality subsection label."
+    },
+    "Audio → %@" : {
+      "comment" : "Compression confirm: audio row; format name."
+    },
+    "Audio file" : {
+      "comment" : "Tooltip for generic audio type chip."
+    },
+    "Audio: convert to %@" : {
+      "comment" : "Compression confirm: audio target format."
+    },
+    "Audio: export as %@ at %@ quality." : {
+      "comment" : "Results row: audio policy tooltip.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Audio: export as %1$@ at %2$@ quality."
+          }
+        }
+      }
+    },
+    "Audio: fixed quality — %@" : {
+      "comment" : "Compression confirm: audio manual tier."
+    },
+    "Audio: Smart Quality adjusts %@ picks from bitrate when helpful." : {
+      "comment" : "Results row: audio policy tooltip; format name."
+    },
+    "Audio: Smart Quality adjusts format or tier from file bitrate (when applicable)." : {
+      "comment" : "Compression confirm: audio smart quality."
     },
     "Auto" : {
       "comment" : "Preset list: automatic image format."
@@ -3486,8 +3523,8 @@
         }
       }
     },
-    "Balanced. ~120 DPI — good for most purposes." : {
-      "comment" : "PDF flatten quality tier description."
+    "Back" : {
+      "comment" : "Preferences toolbar."
     },
     "Balances size and readability; you choose text vs flatten in All options." : {
       "comment" : "Outcome map friendly: PDFs smart."
@@ -3797,7 +3834,7 @@
       }
     },
     "Behavior" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4424,6 +4461,9 @@
         }
       }
     },
+    "Cap frame rate" : {
+      "comment" : "Settings UI: video FPS cap toggle.\nSidebar: video FPS cap toggle."
+    },
     "Cap output resolution" : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -4897,6 +4937,7 @@
     },
     "Choose format, quality, and output options for images, videos, and PDFs." : {
       "comment" : "A hint that appears when hovering over the sidebar header.",
+      "extractionState" : "stale",
       "isCommentAutoGenerated" : true,
       "localizations" : {
         "de" : {
@@ -4972,6 +5013,10 @@
           }
         }
       }
+    },
+    "Choose format, quality, and output options for images, videos, audio, and PDFs." : {
+      "comment" : "An accessibility hint for the sidebar that explains its purpose.",
+      "isCommentAutoGenerated" : true
     },
     "Choose formats automatically" : {
       "comment" : "Sidebar simple mode: auto image format.",
@@ -5282,6 +5327,9 @@
         }
       }
     },
+    "Clear preset" : {
+      "comment" : "Sidebar: deselect active preset."
+    },
     "Clears the running total shown in History. Session history is unchanged — clear that from the History window." : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -5358,6 +5406,9 @@
           }
         }
       }
+    },
+    "CLI docs and examples…" : {
+      "comment" : "Settings UI."
     },
     "Click to see error details" : {
       "comment" : "Tooltip for error chip.",
@@ -6792,6 +6843,30 @@
         }
       }
     },
+    "compress_confirm_audio" : {
+      "comment" : "Compression confirm: audio file count; plural.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld audio file"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld audio files"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "compress_confirm_comma_pair" : {
       "comment" : "Compression confirm: join two count phrases with a comma.",
       "localizations" : {
@@ -7339,7 +7414,7 @@
     "Compresses PDF files using Dinky and returns the compressed versions. Uses preserve vs flatten, flatten quality, grayscale, and strip metadata from the app’s Settings." : {
       "comment" : "Shortcuts app: PDF intent description."
     },
-    "Compresses video files to MP4 using Dinky and returns the compressed files. Uses codec, quality, audio removal, and max resolution from the app’s Settings." : {
+    "Compresses video files to MP4 using Dinky and returns the compressed files. Uses codec, quality, audio removal, max resolution, and optional frame-rate cap from the app’s Settings." : {
       "comment" : "Shortcuts app: video intent description."
     },
     "Compressing — %lld percent" : {
@@ -7497,7 +7572,7 @@
       }
     },
     "Compression" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -7810,6 +7885,9 @@
     "Confirm compression" : {
       "comment" : "Compression confirm sheet title."
     },
+    "Confirm covers drag-and-drop, Open, the Dock, Services, and Clipboard (not Watch Folder). Manual mode waits for Compress Now. Batch summary shows savings; auto-clear removes finished rows while failures remain." : {
+      "comment" : "Settings UI: Behavior section summary footer."
+    },
     "Continue" : {
       "comment" : "Bottom bar: resume queue after Stop.\nCompression confirm sheet."
     },
@@ -7830,9 +7908,6 @@
     },
     "Copies Finder Get Info → Comments to the compressed file." : {
       "comment" : "Sidebar: preserve Finder comments helper."
-    },
-    "Copies the Finder Get Info → Comments field onto the output file. Separate from Strip metadata, which removes embedded EXIF, GPS, camera info, and PDF properties." : {
-      "comment" : "Settings UI: Preserve Finder comments footnote."
     },
     "Copy" : {
       "comment" : "System shortcut name for conflict warning.",
@@ -8397,6 +8472,12 @@
         }
       }
     },
+    "Create one to save your favorite combinations of format and quality settings." : {
+      "comment" : "Settings UI: presets empty state hint."
+    },
+    "Cross-converts with macOS conversion tools." : {
+      "comment" : "Simple outcome: audio technical non-MP3."
+    },
     "Custom folder (not set in Settings)" : {
       "comment" : "Output summary: custom folder unset."
     },
@@ -8872,7 +8953,7 @@
       "comment" : "Settings Output tab intro."
     },
     "Delete" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI: delete selected preset.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9187,6 +9268,9 @@
           }
         }
       }
+    },
+    "Dinky auto-picks modern image formats and tuning per file; same Smart Quality adjusts PDFs, video, and audio. Expand for details." : {
+      "comment" : "Simple sidebar outcome one-liner, smart on, auto format."
     },
     "Dinky compressed this file but the result was only %.1f%% smaller — under your %d%% threshold, so the original was kept.\n\nLower the threshold in Settings → General → Skip if savings below to compress files like this automatically, or click Compress Anyway to force this one." : {
       "comment" : "Skipped detail body.",
@@ -9594,6 +9678,9 @@
           }
         }
       }
+    },
+    "Dinky includes advanced local tools for pro users: a `dinky` command-line tool and optional local HTTP mode (`dinky serve`) for automation and AI agents." : {
+      "comment" : "Settings UI."
     },
     "Dinky picks a tier from each document. The choice below is the manual fallback if analysis fails." : {
       "comment" : "Sidebar PDF: smart flatten helper."
@@ -10150,16 +10237,13 @@
       }
     },
     "Duplicate" : {
-      "comment" : "Settings UI: duplicate preset."
+      "comment" : "Settings UI: duplicate selected preset."
     },
     "Duplicate naming" : {
       "comment" : "Settings UI: section for name collisions."
     },
-    "Duplicate preset" : {
-      "comment" : "VoiceOver: duplicate selected preset."
-    },
     "Duration" : {
-      "comment" : "Tooltip for video duration chip.",
+      "comment" : "Tooltip for audio duration chip.\nTooltip for video duration chip.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -10389,8 +10473,14 @@
         }
       }
     },
+    "Edit preset…" : {
+      "comment" : "Sidebar: jump to preset in Settings."
+    },
     "Edit presets…" : {
       "comment" : "Compression confirm: open Presets tab."
+    },
+    "Editing" : {
+      "comment" : "Settings UI: which preset is being edited."
     },
     "Email Error…" : {
       "comment" : "Send error by email.",
@@ -10877,6 +10967,12 @@
     },
     "Experimental preserve…" : {
       "comment" : "Batch summary: experimental preserve menu label."
+    },
+    "Exports each track using Smart Quality picks from bitrate when helpful; otherwise respects your chosen format." : {
+      "comment" : "Simple outcome: audio with smart quality."
+    },
+    "Exports to %@ with your chosen bitrate tier." : {
+      "comment" : "Simple outcome: audio without smart quality; argument is format name."
     },
     "Feedback — Dinky v%@" : {
       "comment" : "Email subject for feedback. Argument is app version.",
@@ -11424,6 +11520,9 @@
     "First frame only" : {
       "comment" : "VoiceOver: first-frame-only chip."
     },
+    "Fixed tiers in All options… apply until you turn Smart Quality back on. Expand for details." : {
+      "comment" : "Simple sidebar outcome one-liner, smart off."
+    },
     "Flatten · %@" : {
       "comment" : "Results row: PDF flatten chip; tier name."
     },
@@ -11750,7 +11849,7 @@
       }
     },
     "Format" : {
-      "comment" : "Settings UI: Media image subsection.\nSettings UI: Media video codec.\nShortcuts: format type name.\nShortcuts: output format parameter title.",
+      "comment" : "Settings UI: Media image subsection.\nSettings UI: Media video codec.\nSettings UI: audio output.\nShortcuts: format type name.\nShortcuts: output format parameter title.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11831,6 +11930,12 @@
     },
     "Format & Options Sidebar" : {
       "comment" : "File menu: toggle compression sidebar.\nMenu: show or hide compression sidebar."
+    },
+    "Forward" : {
+      "comment" : "Preferences toolbar."
+    },
+    "Frame rate" : {
+      "comment" : "Sidebar Video: FPS control label."
     },
     "Français" : {
 
@@ -11928,7 +12033,7 @@
       "comment" : "Preset list: video no resolution cap."
     },
     "General" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings sidebar section header.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14088,9 +14193,6 @@
         }
       }
     },
-    "How Dinky handles photos, documents, video, and saved files — expand for details." : {
-      "comment" : "Collapsed teaser under What to expect header."
-    },
     "How it will run" : {
       "comment" : "Compression confirm: controls section."
     },
@@ -14808,6 +14910,9 @@
         }
       }
     },
+    "Interface" : {
+      "comment" : "Settings sidebar section header."
+    },
     "Italiano" : {
 
     },
@@ -15367,6 +15472,12 @@
     "Low / Medium / High apply when Smallest file (flatten) is selected under Media." : {
       "comment" : "Settings UI."
     },
+    "Lowers output FPS when the source runs faster than the cap (great for screen recordings). Source timing is unchanged when it is already at or below this rate." : {
+      "comment" : "Settings UI: video FPS cap helper."
+    },
+    "Lowers output FPS when the source runs faster than the cap (great for screen recordings). Unchanged when the source is already at or below this rate." : {
+      "comment" : "Sidebar Video: FPS cap helper."
+    },
     "Make scanned PDFs searchable (OCR)" : {
       "comment" : "Settings UI: PDF OCR toggle.\nSidebar PDF OCR toggle."
     },
@@ -15859,6 +15970,9 @@
     "Manual tier is the fallback when smart analysis can’t run." : {
       "comment" : "Settings UI: PDF smart flatten helper."
     },
+    "max %lld fps" : {
+      "comment" : "Preset list: video FPS cap."
+    },
     "max %lld px" : {
       "comment" : "Preset list: max width pixels."
     },
@@ -15866,13 +15980,13 @@
       "comment" : "Settings UI: Media PDF subsection.\nSettings UI: Media image subsection.\nSidebar PDF: max file size subsection header."
     },
     "Max resolution" : {
-      "comment" : "Settings UI: Media video subsection."
+      "comment" : "Sidebar Video: max resolution control label."
     },
     "Max width" : {
       "comment" : "Settings UI: Media image subsection."
     },
     "Maximum (both)" : {
-      "comment" : "Batch summary: experimental preserve retry.\nPDF experimental preserve preset name."
+      "comment" : "Batch summary: experimental preserve retry."
     },
     "Maybe later" : {
       "comment" : "Manual update alert.",
@@ -16259,9 +16373,6 @@
         }
       }
     },
-    "Minimum size. 72 DPI — screen sharing and quick previews only." : {
-      "comment" : "PDF flatten quality tier description."
-    },
     "More help" : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -16493,6 +16604,18 @@
         }
       }
     },
+    "MP3 encoding uses the bundled LAME encoder (LGPL). WAV, AIFF, AAC/M4A, ALAC, and FLAC use macOS audio tools." : {
+      "comment" : "Sidebar Audio: LAME note."
+    },
+    "MP3 encoding uses the bundled LAME encoder (LGPL). WAV/AIFF/AAC/M4A/FLAC use macOS audio tools." : {
+      "comment" : "Settings UI: audio mp3 legal note."
+    },
+    "MP3 uses bundled LAME (LGPL); other formats use macOS conversion." : {
+      "comment" : "Compression confirm: LAME note."
+    },
+    "MP3 uses bundled LAME; other formats use macOS audio conversion." : {
+      "comment" : "Simple outcome: audio technical with MP3."
+    },
     "MP4: codec (H.264 / HEVC), quality, and resolution cap in All options… below." : {
       "comment" : "Simple outcome: videos without smart quality."
     },
@@ -16653,8 +16776,8 @@
         }
       }
     },
-    "New files stay queued until you tap Compress Now. Turn off to compress automatically when files are added." : {
-      "comment" : "Settings UI."
+    "New Preset" : {
+      "comment" : "Settings UI: create a new preset."
     },
     "New Tab" : {
       "comment" : "System shortcut name for conflict warning.",
@@ -16812,6 +16935,9 @@
     },
     "no audio" : {
       "comment" : "Preset list: audio stripped."
+    },
+    "No audio track was found in this file." : {
+      "comment" : "Audio conversion error."
     },
     "No folder selected" : {
       "comment" : "Settings UI.",
@@ -17044,8 +17170,12 @@
         }
       }
     },
+    "No presets yet" : {
+      "comment" : "Settings UI: presets empty state title."
+    },
     "No presets yet. Click Add to create one." : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17516,7 +17646,7 @@
       }
     },
     "Notifications" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -17591,6 +17721,9 @@
           }
         }
       }
+    },
+    "Notifications may be suppressed during Focus or Do Not Disturb until Dinky is allowed in System Settings → Notifications. Open Folder reveals the output directory after each batch." : {
+      "comment" : "Settings UI: Notifications footer."
     },
     "Notify when done" : {
       "comment" : "Settings UI.",
@@ -17766,9 +17899,6 @@
         }
       }
     },
-    "Off (default)" : {
-      "comment" : "PDF experimental preserve: disabled."
-    },
     "Off keeps source resolution and just re-encodes for size." : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -17845,6 +17975,9 @@
           }
         }
       }
+    },
+    "Off keeps the source frame rate." : {
+      "comment" : "Settings UI: FPS cap off.\nSidebar Video: FPS cap off."
     },
     "OK" : {
       "comment" : "Alert dismiss button.\nAlert dismiss.\nDismiss batch summary sheet.",
@@ -17925,6 +18058,7 @@
     },
     "On by default: quick choices and plain-language summaries. Turn off to show every image, video, and PDF control in the sidebar." : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -18950,7 +19084,7 @@
       }
     },
     "Original Files" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -19104,7 +19238,7 @@
       }
     },
     "Output" : {
-      "comment" : "Outcome map row title; matches Output scope tab.\nSettings UI.\nSettings UI: Media PDF subsection.",
+      "comment" : "Outcome map row title; matches Output scope tab.\nSettings UI.\nSettings UI: Media PDF subsection.\nVoiceOver: Output scope.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -19179,6 +19313,12 @@
           }
         }
       }
+    },
+    "Output & files" : {
+      "comment" : "Sidebar: scope control for output options."
+    },
+    "Output format" : {
+      "comment" : "Compression confirm: audio format picker."
     },
     "Output format for compressed images." : {
       "comment" : "Shortcuts: format parameter description.",
@@ -19257,6 +19397,9 @@
         }
       }
     },
+    "Output preferences…" : {
+      "comment" : "Sidebar: link to Output settings pane."
+    },
     "Output resolution and codec live under Media." : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -19334,6 +19477,9 @@
         }
       }
     },
+    "Output size" : {
+      "comment" : "Sidebar Video: category for resolution + FPS."
+    },
     "Output: .mp4 using %@ at %@ quality." : {
       "comment" : "Results row: video policy tooltip; codec then quality.",
       "localizations" : {
@@ -19347,6 +19493,9 @@
     },
     "Output: .mp4 using %@. Smart Quality picks encoder strength per clip (HDR may use HEVC)." : {
       "comment" : "Results row: video policy tooltip."
+    },
+    "Overrides default" : {
+      "comment" : "Settings UI: preset differs from global preference."
     },
     "Overrides macOS:" : {
       "comment" : "Prefix when shortcut may override a system shortcut.",
@@ -19947,13 +20096,16 @@
     "Pick the language closest to your scans (on-device Vision)." : {
       "comment" : "Sidebar PDF OCR language helper."
     },
-    "Picks Balanced or High per clip from resolution, source bitrate, and content (screen recordings and animation / motion graphics get nudged up so text and edges stay crisp). HDR sources are exported with HEVC to preserve color." : {
-      "comment" : "Sidebar Video: smart quality on helper."
-    },
-    "Picks encoder strength per image from content (photo vs. graphic). The same switch tunes PDF tiers and video strength." : {
-      "comment" : "Sidebar Images: smart quality on helper."
+    "Picks encoder strength per clip from resolution and bitrate. Turn off Smart quality under Compression for a fixed tier." : {
+      "comment" : "Settings UI."
     },
     "Picks encoder strength per image from content (photo vs. graphic). Turn off Smart quality under Compression to choose Photo, Graphic, or Mixed." : {
+      "comment" : "Settings UI."
+    },
+    "Picks encoder strength per image, per video clip, per audio file from content, and PDF flatten tier per document. Turn off to set fixed tiers per scope below." : {
+      "comment" : "Sidebar: unified smart quality helper."
+    },
+    "Picks encoding strength from the track. Turn off Smart quality under Compression for a fixed tier." : {
       "comment" : "Settings UI."
     },
     "Play sound when done" : {
@@ -20355,7 +20507,7 @@
       }
     },
     "Preserve text (best-effort size)" : {
-      "comment" : "PDF output mode short label.\nSettings UI: PDF output mode."
+      "comment" : "Settings UI: PDF output mode."
     },
     "Preserve text & links" : {
       "comment" : "Settings UI.",
@@ -20605,7 +20757,7 @@
       "comment" : "Compression confirm: no preset in queue summary."
     },
     "Presets" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSidebar footer: open Presets settings.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21070,7 +21222,7 @@
       }
     },
     "Privacy" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -21145,6 +21297,9 @@
           }
         }
       }
+    },
+    "Pro tools (CLI/API)" : {
+      "comment" : "Settings UI."
     },
     "px" : {
       "comment" : "Unit abbreviation for pixels.\nUnit: pixels.",
@@ -21223,14 +21378,11 @@
         }
       }
     },
-    "qpdf + PDFKit when smaller; keeps text and links. Many PDFs won’t shrink." : {
-      "comment" : "PDF preserve mode description."
-    },
     "qpdf + PDFKit; keeps structure only when the result is smaller. Many PDFs won’t shrink. Low / Medium / High and grayscale apply when Smallest file (flatten) is selected." : {
       "comment" : "Settings UI: PDF preserve expectations."
     },
     "Quality" : {
-      "comment" : "Settings UI: Media PDF subsection.\nSettings UI: Media image subsection."
+      "comment" : "Settings UI: Media PDF subsection.\nSettings UI: Media image subsection.\nSettings UI: Media video subsection.\nSettings UI: audio tier."
     },
     "Quality tiers and grayscale apply when you choose Smallest file (flatten pages)." : {
       "comment" : "Sidebar PDF: flatten options pointer."
@@ -21312,6 +21464,9 @@
         }
       }
     },
+    "Quirky but straightforward: give Dinky file paths, get smaller files back. Everything runs on your Mac." : {
+      "comment" : "Settings UI."
+    },
     "Quit App" : {
       "comment" : "System shortcut name for conflict warning.",
       "localizations" : {
@@ -21391,9 +21546,6 @@
     },
     "Rasterize pages to JPEG (%@ tier)." : {
       "comment" : "Results row: PDF flatten tooltip; tier."
-    },
-    "Rasterizes each page to JPEG for reliable smaller files. No selectable text or links." : {
-      "comment" : "PDF flatten mode description."
     },
     "Rasterizes image-heavy pages at 144 DPI while keeping text pages selectable. Best for 300/600 DPI scans; no effect on vector or text-only PDFs." : {
       "comment" : "Settings UI: PDF downsampling helper."
@@ -22023,9 +22175,6 @@
     "Recognition uses Apple’s on-device Vision engine; pick the closest language to your documents." : {
       "comment" : "Settings UI: OCR language helper."
     },
-    "Recompresses embedded images more aggressively. Can introduce JPEG artifacts." : {
-      "comment" : "PDF experimental preserve description."
-    },
     "Redo" : {
       "comment" : "System shortcut name for conflict warning.",
       "localizations" : {
@@ -22337,7 +22486,7 @@
         }
       }
     },
-    "Removes embedded EXIF, GPS, camera info, PDF properties (title, subject, keywords), and color profiles when supported. Does not remove Finder’s Get Info → Comments; use Preserve Finder comments in Settings → General for that." : {
+    "Removes embedded EXIF, GPS, camera info, PDF properties (title, subject, keywords), and color profiles when supported. Does not remove Finder’s Get Info → Comments; use Preserve Finder comments in Settings → Compression for that." : {
       "comment" : "Settings UI: Strip metadata explanation."
     },
     "Removes embedded EXIF, location, camera info, and PDF properties when supported. Finder Get Info comments are separate — turn on Preserve Finder comments below." : {
@@ -22423,6 +22572,7 @@
     },
     "Removes finished rows shortly after a batch completes. Failed or skipped files stay so you can act on them." : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -22497,9 +22647,6 @@
           }
         }
       }
-    },
-    "Removes the PDF structure tree (tagged PDF / markup). Smaller on some exports; screen readers may lose tags." : {
-      "comment" : "PDF experimental preserve description."
     },
     "Replace original" : {
       "comment" : "Settings UI.",
@@ -23358,6 +23505,9 @@
         }
       }
     },
+    "Reveal in Finder when done" : {
+      "comment" : "Sidebar output: open folder toggle."
+    },
     "Reveal saved files in Finder" : {
       "localizations" : {
         "de" : {
@@ -23527,7 +23677,7 @@
       }
     },
     "Sanitize filenames" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSidebar output: sanitize filenames toggle.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23845,9 +23995,6 @@
     },
     "Saves where you chose in Settings; optionally reveals the folder when done." : {
       "comment" : "Outcome map friendly: output."
-    },
-    "Saving the PDF did not reduce its size compared to the original." : {
-      "comment" : "PDF preserve: rewrite was larger or the same size."
     },
     "Scan-like PDFs can be made searchable with OCR first." : {
       "comment" : "Outcome map friendly: PDF OCR sentence append."
@@ -24318,7 +24465,7 @@
       }
     },
     "Settings…" : {
-      "comment" : "Open Settings from banner.",
+      "comment" : "App menu: open settings.\nOpen Settings from banner.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -24470,9 +24617,6 @@
           }
         }
       }
-    },
-    "Sharper. ~160 DPI — better for print than Medium." : {
-      "comment" : "PDF flatten quality tier description."
     },
     "Shortcuts" : {
       "comment" : "Settings UI.",
@@ -24627,6 +24771,9 @@
           }
         }
       }
+    },
+    "Show Audio in sidebar" : {
+      "comment" : "Settings UI."
     },
     "Show batch summary when done" : {
       "comment" : "Settings UI."
@@ -25103,12 +25250,6 @@
     "Shows a menu to choose which file types use this preset." : {
       "comment" : "VoiceOver: preset Applies to menu."
     },
-    "Shows a review sheet before starting — covers drag-and-drop, Open, the Dock, Services, and Clipboard. Watch Folder is not affected." : {
-      "comment" : "Settings UI."
-    },
-    "Shows space saved and time after each successful batch." : {
-      "comment" : "Settings UI."
-    },
     "Side by Side" : {
       "comment" : "Image preview mode.",
       "localizations" : {
@@ -25187,7 +25328,7 @@
       }
     },
     "Sidebar" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSettings sidebar item.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -25265,6 +25406,7 @@
     },
     "Sidebar sections in Appearance…" : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -25340,8 +25482,15 @@
         }
       }
     },
+    "Sidebar sections…" : {
+      "comment" : "Settings UI: link to sidebar pane."
+    },
+    "Simple sidebar shows quick choices only. Turn on a section above to add its full scope to the sidebar, or turn off simple sidebar to show every section." : {
+      "comment" : "Settings UI."
+    },
     "Simple sidebar shows quick choices only. Turn on a section above to add its full tab to the sidebar, or turn off simple sidebar to show every section." : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -25493,6 +25642,9 @@
           }
         }
       }
+    },
+    "Skip-if-savings applies to images and video; PDFs keep smaller results regardless. Higher concurrency runs more encoders at once. Batch order affects perceived progress on large batches. Finder comments are separate from stripping embedded metadata in the sidebar." : {
+      "comment" : "Settings UI: Compression section footer."
     },
     "Skipped" : {
       "comment" : "Status chip.",
@@ -25745,11 +25897,8 @@
     "Smaller output by limiting height. Source resolution is kept when below the cap. Smart quality still picks Balanced or High per clip; when this is on, output size is capped." : {
       "comment" : "Sidebar Video: max resolution + smart quality note."
     },
-    "Smallest" : {
-      "comment" : "PDF flatten quality tier."
-    },
     "Smallest file (flatten pages)" : {
-      "comment" : "PDF output mode short label.\nSidebar PDF mode title."
+      "comment" : "Sidebar PDF mode title."
     },
     "Smallest file (flatten)" : {
       "comment" : "Settings UI: PDF output mode."
@@ -25835,7 +25984,19 @@
       }
     },
     "Smart quality (all types)" : {
-      "comment" : "Preset summary line.\nSidebar: global smart quality for images, PDF, and video."
+      "comment" : "Preset summary line.\nSidebar: global smart quality for images, PDF, and video.\nSidebar: global smart quality for images, PDF, video, and audio."
+    },
+    "Smart quality is on — encoder strength is picked per clip automatically." : {
+      "comment" : "Sidebar video: smart quality active placeholder."
+    },
+    "Smart quality is on — encoder strength is picked per file automatically." : {
+      "comment" : "Sidebar images: smart quality active, quality section placeholder."
+    },
+    "Smart quality is on — encoding strength is picked per track automatically." : {
+      "comment" : "Sidebar audio: smart quality active placeholder."
+    },
+    "Smart Quality tunes each file from content; you still choose some format chips in All options. Expand for details." : {
+      "comment" : "Simple sidebar outcome one-liner, smart on, manual image format."
     },
     "Something else is already at %@." : {
       "comment" : "Undo error; argument is a path."
@@ -25996,9 +26157,6 @@
           }
         }
       }
-    },
-    "Standard qpdf + PDFKit preserve path." : {
-      "comment" : "PDF experimental preserve description."
     },
     "Start with largest files" : {
       "comment" : "Settings: toggle to schedule big files first in a batch.",
@@ -26247,7 +26405,7 @@
       }
     },
     "Strip metadata" : {
-      "comment" : "Settings UI.",
+      "comment" : "Settings UI.\nSidebar output: strip metadata toggle.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -26324,13 +26482,10 @@
       }
     },
     "Strip non-essential structure" : {
-      "comment" : "Batch summary: experimental preserve retry.\nPDF experimental preserve preset name."
+      "comment" : "Batch summary: experimental preserve retry."
     },
     "Stronger image recompression" : {
-      "comment" : "Batch summary: experimental preserve retry.\nPDF experimental preserve preset name."
-    },
-    "Structure strip + stronger JPEG. Highest chance of a smaller file; highest risk to fidelity." : {
-      "comment" : "PDF experimental preserve description."
+      "comment" : "Batch summary: experimental preserve retry."
     },
     "Suffix" : {
       "comment" : "Settings UI.",
@@ -27530,6 +27685,7 @@
     },
     "To receive notifications during Focus or Do Not Disturb, allow Dinky in System Settings → Focus." : {
       "comment" : "Settings UI.",
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -28719,6 +28875,9 @@
         }
       }
     },
+    "Use Settings default" : {
+      "comment" : "Settings UI: apply global preference to preset."
+    },
     "Use simple sidebar" : {
       "comment" : "Settings UI.\nSidebar footer: switch back to simple mode.",
       "localizations" : {
@@ -29203,9 +29362,6 @@
         }
       }
     },
-    "Very small. ~88 DPI — fine for screen viewing." : {
-      "comment" : "PDF flatten quality tier description."
-    },
     "video" : {
       "comment" : "Default filename stem for Shortcuts video output when source has no name.\nResults row: generic video chip when content type was not classified (e.g. Smart Quality off)."
     },
@@ -29300,6 +29456,9 @@
     },
     "Videos: audio stripped from output" : {
       "comment" : "Compression confirm: video strip audio."
+    },
+    "Videos: cap frame rate at %lld fps when source runs higher" : {
+      "comment" : "Compression confirm: video FPS cap."
     },
     "Videos: fixed encoder strength — %@" : {
       "comment" : "Compression confirm: video manual quality; argument is tier name."
@@ -29695,6 +29854,9 @@
         }
       }
     },
+    "Watch folders" : {
+      "comment" : "Sidebar footer: open Watch settings."
+    },
     "Watch folders use this preset only for matching file types. Other files use the global sidebar settings." : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -30005,9 +30167,6 @@
     },
     "What to expect" : {
       "comment" : "Heading above simple-mode outcome rows."
-    },
-    "What to expect, collapsed. How Dinky handles photos, documents, video, and saved files. Activate the header to show friendly and technical details." : {
-      "comment" : "VoiceOver: collapsed What to expect block."
     },
     "What’s new" : {
       "comment" : "Manual update alert.\nUpdate banner link to release notes.",
@@ -30329,7 +30488,7 @@
         }
       }
     },
-    "When on, Dinky picks encoder strength per file (images, PDF flatten, video). Turn off for manual choices in each section below." : {
+    "When on, Dinky picks encoder strength per file (images, PDF flatten, video, audio). Turn off for manual choices in each section below." : {
       "comment" : "Compression confirm: smart quality footnote."
     },
     "When Smart quality is on, flatten may use grayscale for PDFs that look like black-and-white office scans, even if Grayscale PDF is off." : {
@@ -30411,6 +30570,9 @@
           }
         }
       }
+    },
+    "Workflow" : {
+      "comment" : "Settings sidebar section header."
     },
     "Working" : {
       "comment" : "Compression in progress label.",

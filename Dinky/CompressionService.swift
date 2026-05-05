@@ -1,6 +1,7 @@
 import AVFoundation
 import CoreGraphics
 import DinkyCoreImage
+import DinkyCoreShared
 import Foundation
 import ImageIO
 import UniformTypeIdentifiers
@@ -24,6 +25,8 @@ struct CompressionResult {
     var videoContentType: VideoContentType? = nil
     var videoIsHDR: Bool = false
     var videoEffectiveCodec: VideoCodecFamily? = nil
+    /// Duration in seconds when the job was audio (or reuse for display).
+    var audioDurationSeconds: Double? = nil
     var usedFirstFrameOnly: Bool = false
 }
 
@@ -40,6 +43,8 @@ enum CompressionError: LocalizedError {
     case imageResizeFailed
     case imageReadFailed
     case imageWriteFailed
+    case audioConversionFailed(String)
+    case audioNoTrack
 
     var errorDescription: String? {
         switch self {
@@ -58,6 +63,10 @@ enum CompressionError: LocalizedError {
             return String(localized: "Could not read image data from this file.", comment: "Error when ImageIO fails to read source.")
         case .imageWriteFailed:
             return String(localized: "Could not write the compressed image file.", comment: "Error when ImageIO fails to finalize output.")
+        case .audioConversionFailed(let msg):
+            return msg
+        case .audioNoTrack:
+            return String(localized: "No audio track was found in this file.", comment: "Audio conversion error.")
         }
     }
 }
@@ -174,6 +183,8 @@ actor CompressionService {
         codec: VideoCodecFamily,
         removeAudio: Bool,
         maxResolutionLines: Int? = nil,
+        maxFPSEnabled: Bool = false,
+        storedMaxFPS: Int = VideoFPSCapPreset.defaultStoredFPS,
         outputURL: URL,
         videoContentType: VideoContentType? = nil,
         progressHandler: (@Sendable (Float) -> Void)? = nil
@@ -185,6 +196,8 @@ actor CompressionService {
             codec: codec,
             removeAudio: removeAudio,
             maxResolutionLines: maxResolutionLines,
+            maxFPSEnabled: maxFPSEnabled,
+            storedMaxFPS: storedMaxFPS,
             outputURL: outputURL,
             videoContentType: videoContentType,
             progressHandler: progressHandler
@@ -193,7 +206,7 @@ actor CompressionService {
 
     /// Reuses a pre-built ``AVURLAsset`` (e.g. shared with ``VideoSmartQuality``) to avoid reopening the file.
     /// - Parameter maxResolutionLines: Optional output-height cap (mirrors images' Max width). `nil` keeps source resolution.
-    /// - Parameter videoContentType: When already known (Smart Quality classified it), surfaced in the result for the UI chip.
+    /// - Parameter maxFPSEnabled: When true, down-cap frame rate using ``storedMaxFPS`` when source nominal FPS is higher.
     func compressVideo(
         asset: AVURLAsset,
         source: URL,
@@ -201,6 +214,8 @@ actor CompressionService {
         codec: VideoCodecFamily,
         removeAudio: Bool,
         maxResolutionLines: Int? = nil,
+        maxFPSEnabled: Bool = false,
+        storedMaxFPS: Int = VideoFPSCapPreset.defaultStoredFPS,
         outputURL: URL,
         videoContentType: VideoContentType? = nil,
         progressHandler: (@Sendable (Float) -> Void)? = nil
@@ -219,6 +234,8 @@ actor CompressionService {
             codec: codec,
             removeAudio: removeAudio,
             maxResolutionLines: maxResolutionLines,
+            maxFPSEnabled: maxFPSEnabled,
+            storedMaxFPS: storedMaxFPS,
             outputURL: outputURL,
             progressHandler: progressHandler
         )
@@ -237,6 +254,65 @@ actor CompressionService {
             videoIsHDR: resolved.isHDR,
             videoEffectiveCodec: resolved.codec
         )
+    }
+
+    // MARK: - Audio conversion
+
+    func compressAudio(
+        source: URL,
+        targetFormat: AudioConversionFormat,
+        qualityTier: AudioConversionQualityTier,
+        outputURL: URL,
+        progressHandler: (@Sendable (Float) -> Void)? = nil
+    ) async throws -> CompressionResult {
+        let originalSize = fileSize(source)
+        try FileManager.default.createDirectory(
+            at: outputURL.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+
+        let lameExecutable: URL? = {
+            guard targetFormat == .mp3 else { return nil }
+            return DinkyEncoderPath.lameExecutable(inBinDirectory: binDir)
+        }()
+
+        if targetFormat == .mp3, lameExecutable == nil {
+            throw CompressionError.binaryNotFound("lame")
+        }
+
+        let resolved: AudioCompressor.Resolved
+        do {
+            resolved = try await AudioCompressor.convert(
+                source: source,
+                targetFormat: targetFormat,
+                qualityTier: qualityTier,
+                lameExecutable: lameExecutable,
+                outputURL: outputURL,
+                progressHandler: progressHandler
+            )
+        } catch let e as AudioCompressionError {
+            throw mapAudioCompressionError(e)
+        }
+
+        guard FileManager.default.fileExists(atPath: outputURL.path) else {
+            throw CompressionError.outputMissing
+        }
+
+        return CompressionResult(
+            outputURL: outputURL,
+            originalSize: originalSize,
+            outputSize: fileSize(outputURL),
+            detectedContentType: nil,
+            audioDurationSeconds: resolved.durationSeconds
+        )
+    }
+
+    private func mapAudioCompressionError(_ e: AudioCompressionError) -> CompressionError {
+        switch e {
+        case .noAudioTrack: return .audioNoTrack
+        case .lameExecutableRequired: return .binaryNotFound("lame")
+        case .afconvertFailed(let m): return .audioConversionFailed(m)
+        }
     }
 
     // MARK: - Helpers

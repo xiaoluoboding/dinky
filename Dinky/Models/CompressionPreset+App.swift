@@ -43,6 +43,10 @@ extension CompressionPreset {
             videoRemoveAudio: prefs.videoRemoveAudio,
             videoMaxResolutionEnabled: prefs.videoMaxResolutionEnabled,
             videoMaxResolutionLines: prefs.videoMaxResolutionLines,
+            videoMaxFPSEnabled: prefs.videoMaxFPSEnabled,
+            videoMaxFPS: prefs.videoMaxFPS,
+            audioFormatRaw: prefs.audioFormatRaw,
+            audioQualityTierRaw: prefs.audioQualityTierRaw,
             pdfEnableOCR: prefs.pdfEnableOCR,
             pdfOCRLanguages: prefs.pdfOCRLanguages,
             createdAt: .now
@@ -85,6 +89,10 @@ extension CompressionPreset {
         prefs.videoRemoveAudio = videoRemoveAudio
         prefs.videoMaxResolutionEnabled = videoMaxResolutionEnabled
         prefs.videoMaxResolutionLines = videoMaxResolutionLines
+        prefs.videoMaxFPSEnabled = videoMaxFPSEnabled
+        prefs.videoMaxFPS = videoMaxFPS
+        prefs.audioFormatRaw = audioFormatRaw
+        prefs.audioQualityTierRaw = audioQualityTierRaw
         prefs.pdfEnableOCR = pdfEnableOCR
         prefs.pdfOCRLanguages = pdfOCRLanguages
     }
@@ -105,13 +113,13 @@ extension CompressionPreset {
         }
     }
 
-    /// Short label for lists and sidebars: `All`, or comma-separated `Images`, `Videos`, `PDFs`.
+    /// Short label for lists and sidebars: `All`, or comma-separated media names.
     var includedMediaTypesSummaryLabel: String {
         let inc = includedMediaTypes
         if inc == PresetMediaScopeRawCodec.allTypes {
             return PresetMediaScope.all.displayName
         }
-        let order: [MediaType] = [.image, .video, .pdf]
+        let order: [MediaType] = [.image, .video, .audio, .pdf]
         let names = order.filter { inc.contains($0) }.map(\.presetAppliesToSummaryWord)
         return names.joined(separator: String(localized: ", ", comment: "Separator between media types in preset subtitle."))
     }
@@ -211,6 +219,21 @@ extension CompressionPreset {
                 if out.count > 75 { out = String(out.prefix(75)) }
             }
             return dir.appendingPathComponent(out).appendingPathExtension("mp4")
+        case .audio:
+            let ext = AudioConversionFormat(rawValue: audioFormatRaw)?.fileExtension ?? "m4a"
+            let dir = destinationDirectory(for: source, globalPrefs: globalPrefs, isFromURLDownload: isFromURLDownload)
+            let stem = source.deletingPathExtension().lastPathComponent
+            var out: String
+            switch filenameHandling {
+            case .appendSuffix: out = stem + "-dinky"
+            case .replaceOrigin: out = stem
+            case .customSuffix: out = stem + (customSuffix.isEmpty ? "-dinky" : customSuffix)
+            }
+            if sanitizeFilenames {
+                out = out.lowercased().replacingOccurrences(of: " ", with: "-")
+                if out.count > 75 { out = String(out.prefix(75)) }
+            }
+            return dir.appendingPathComponent(out).appendingPathExtension(ext)
         }
     }
 }

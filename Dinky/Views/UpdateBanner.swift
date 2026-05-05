@@ -66,30 +66,37 @@ struct UpdateBanner: View {
                             .fixedSize(horizontal: true, vertical: false)
                     }
 
-                    Button {
-                        if itemCount > 0 {
-                            let alert = NSAlert()
-                            alert.messageText = String(localized: "Install update now?", comment: "Alert when installing with queued files.")
-                            alert.informativeText = String(localized: "Your current results will be cleared when Dinky relaunches.", comment: "Alert detail for install with queue.")
-                            alert.addButton(withTitle: String(localized: "Install", comment: "Alert confirm button."))
-                            alert.addButton(withTitle: String(localized: "Cancel", comment: "Alert cancel button."))
-                            guard alert.runModal() == .alertFirstButtonReturn else { return }
+                    if updater.downloadURL != nil {
+                        Button {
+                            if itemCount > 0 {
+                                let alert = NSAlert()
+                                alert.messageText = String(localized: "Install update now?", comment: "Alert when installing with queued files.")
+                                alert.informativeText = String(localized: "Your current results will be cleared when Dinky relaunches.", comment: "Alert detail for install with queue.")
+                                alert.addButton(withTitle: String(localized: "Install", comment: "Alert confirm button."))
+                                alert.addButton(withTitle: String(localized: "Cancel", comment: "Alert cancel button."))
+                                guard alert.runModal() == .alertFirstButtonReturn else { return }
+                            }
+                            Task { await updater.downloadAndInstall() }
+                        } label: {
+                            HStack(spacing: 4) {
+                                Image(systemName: "arrow.down.circle.fill")
+                                    .imageScale(.small)
+                                Text(String(localized: "Install Update", comment: "Update banner primary button."))
+                            }
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color.accentColor))
                         }
-                        Task { await updater.downloadAndInstall() }
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image(systemName: "arrow.down.circle.fill")
-                                .imageScale(.small)
-                            Text(String(localized: "Install Update", comment: "Update banner primary button."))
-                        }
-                        .font(.caption.weight(.medium))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(RoundedRectangle(cornerRadius: 6, style: .continuous).fill(Color.accentColor))
+                        .buttonStyle(.plain)
+                        .fixedSize(horizontal: true, vertical: false)
+                    } else {
+                        Text(String(localized: "Install unavailable", comment: "Update banner: release has no downloadable asset yet."))
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.secondary)
+                            .help(String(localized: "This release was published without a zip or DMG asset yet.", comment: "Tooltip for unavailable install state in update banner."))
                     }
-                    .buttonStyle(.plain)
-                    .fixedSize(horizontal: true, vertical: false)
                 }
                 .layoutPriority(0)
             }

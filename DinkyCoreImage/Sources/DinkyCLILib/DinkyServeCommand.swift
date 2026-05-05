@@ -26,6 +26,10 @@ struct DinkyServeVideoCompressBody: Codable {
     var codec: String?
     var removeAudio: Bool?
     var maxHeight: Int?
+    /// When false, disables FPS cap. When omitted, FPS cap follows `maxFPS` / defaults.
+    var fpsCapEnabled: Bool?
+    /// When set, enables cap with this frame rate (60 / 30 / 24 / 15); normalized if needed.
+    var maxFPS: Int?
     var smartQuality: Bool?
 }
 
@@ -202,6 +206,15 @@ public enum DinkyServeCommand {
         }
         if let r = msg.removeAudio { o.removeAudio = r }
         o.maxResolutionLines = msg.maxHeight
+        if let en = msg.fpsCapEnabled {
+            o.fpsCapEnabled = en
+            if en, let mf = msg.maxFPS {
+                o.fpsCap = VideoFPSCapPreset.normalizeStored(mf)
+            }
+        } else if let mf = msg.maxFPS {
+            o.fpsCapEnabled = true
+            o.fpsCap = VideoFPSCapPreset.normalizeStored(mf)
+        }
         if let sq = msg.smartQuality {
             o.smartQuality = sq
         } else if msg.quality != nil {

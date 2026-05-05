@@ -10,6 +10,7 @@ let package = Package(
         .library(name: "DinkyCoreShared", targets: ["DinkyCoreShared"]),
         .library(name: "DinkyCoreImage", targets: ["DinkyCoreImage"]),
         .library(name: "DinkyCoreVideo", targets: ["DinkyCoreVideo"]),
+        .library(name: "DinkyCoreAudio", targets: ["DinkyCoreAudio"]),
         .library(name: "DinkyCorePDF", targets: ["DinkyCorePDF"]),
         .library(name: "DinkyCLILib", targets: ["DinkyCLILib"]),
         .executable(name: "dinky", targets: ["DinkyCLIApp"]),
@@ -30,6 +31,11 @@ let package = Package(
             path: "Sources/DinkyCoreVideo"
         ),
         .target(
+            name: "DinkyCoreAudio",
+            dependencies: ["DinkyCoreShared"],
+            path: "Sources/DinkyCoreAudio"
+        ),
+        .target(
             name: "DinkyCorePDF",
             dependencies: ["DinkyCoreShared", "DinkyCoreImage"],
             path: "Sources/DinkyCorePDF"
@@ -40,6 +46,7 @@ let package = Package(
                 "DinkyCoreShared",
                 "DinkyCoreImage",
                 "DinkyCoreVideo",
+                "DinkyCoreAudio",
                 "DinkyCorePDF",
             ],
             path: "Sources/DinkyCLILib"
@@ -51,7 +58,7 @@ let package = Package(
         ),
         .testTarget(
             name: "DinkyCLILibTests",
-            dependencies: ["DinkyCLILib", "DinkyCoreImage", "DinkyCoreVideo", "DinkyCorePDF", "DinkyCoreShared"],
+            dependencies: ["DinkyCLILib", "DinkyCoreImage", "DinkyCoreVideo", "DinkyCoreAudio", "DinkyCorePDF", "DinkyCoreShared"],
             path: "Tests/DinkyCLILibTests"
         ),
     ]

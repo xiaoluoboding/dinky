@@ -79,6 +79,7 @@
 				<string>com.apple.quicktime-movie</string>
 				<string>public.m4v-video</string>
 				<string>public.avi</string>
+				<string>org.webmproject.webm</string>
 			</array>
 		</dict>
 	</array>

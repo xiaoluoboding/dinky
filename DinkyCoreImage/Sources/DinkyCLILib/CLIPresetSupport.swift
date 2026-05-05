@@ -163,7 +163,7 @@ public enum DinkyCLIPresetSupport: Sendable {
     private static func scopeLabel(_ p: CompressionPreset) -> String {
         let inc = p.includedMediaTypes
         if inc == PresetMediaScopeRawCodec.allTypes { return PresetMediaScope.all.displayName }
-        let order: [MediaType] = [.image, .video, .pdf]
+        let order: [MediaType] = [.image, .video, .audio, .pdf]
         return order.filter { inc.contains($0) }.map { typeWord($0) }.joined(separator: ", ")
     }
 
@@ -171,6 +171,7 @@ public enum DinkyCLIPresetSupport: Sendable {
         switch m {
         case .image: return "images"
         case .video: return "videos"
+        case .audio: return "audio"
         case .pdf: return "pdfs"
         }
     }
@@ -227,6 +228,10 @@ public enum DinkyCLIPresetSupport: Sendable {
         if !explicit.contains("removeAudio") { o.removeAudio = p.videoRemoveAudio }
         if !explicit.contains("maxHeight") {
             o.maxResolutionLines = p.videoMaxResolutionEnabled ? p.videoMaxResolutionLines : nil
+        }
+        if !explicit.contains("maxFps") {
+            o.fpsCapEnabled = p.videoMaxFPSEnabled
+            o.fpsCap = VideoFPSCapPreset.normalizeStored(p.videoMaxFPS)
         }
         if !explicit.contains("smartQuality") { o.smartQuality = p.smartQuality }
         if !explicit.contains("collisionStyle") {

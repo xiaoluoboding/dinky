@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import DinkyCoreShared
 
 /// Payload for the pre-compression confirmation sheet (user-initiated adds only).
 struct PendingCompressionConfirmation: Identifiable {
@@ -29,20 +30,21 @@ struct CompressionConfirmationSheet: View {
     private static let maxPerFileFormatHints = 30
 
     /// Counts from ``MediaTypeDetector`` for locals (used to gate summary policy rows).
-    private var localQueueTypeCounts: (image: Int, pdf: Int, video: Int, unknown: Int) {
-        var image = 0, pdf = 0, video = 0, unknown = 0
+    private var localQueueTypeCounts: (image: Int, pdf: Int, video: Int, audio: Int, unknown: Int) {
+        var image = 0, pdf = 0, video = 0, audio = 0, unknown = 0
         for u in localURLs {
             if let m = MediaTypeDetector.detect(u) {
                 switch m {
                 case .image: image += 1
                 case .pdf: pdf += 1
                 case .video: video += 1
+                case .audio: audio += 1
                 }
             } else {
                 unknown += 1
             }
         }
-        return (image, pdf, video, unknown)
+        return (image, pdf, video, audio, unknown)
     }
 
     private var showImagePolicyInSummary: Bool {
@@ -51,6 +53,7 @@ struct CompressionConfirmationSheet: View {
 
     private var showVideoPolicyInSummary: Bool { localCount > 0 && localQueueTypeCounts.video > 0 }
     private var showPdfPolicyInSummary: Bool { localCount > 0 && localQueueTypeCounts.pdf > 0 }
+    private var showAudioPolicyInSummary: Bool { localCount > 0 && localQueueTypeCounts.audio > 0 }
     private var showRemoteOnlyPolicyInSummary: Bool { localCount == 0 && remoteCount > 0 }
 
     /// Links-only or unknown locals: show all media control sections.
@@ -71,8 +74,13 @@ struct CompressionConfirmationSheet: View {
         return c.pdf > 0 || c.unknown > 0 || remoteOnlyQueue
     }
 
+    private var showAudioControls: Bool {
+        let c = localQueueTypeCounts
+        return c.audio > 0 || c.unknown > 0 || remoteOnlyQueue
+    }
+
     private var showSmartQualityToggle: Bool {
-        showImageControls || showVideoControls || showPdfControls
+        showImageControls || showVideoControls || showPdfControls || showAudioControls
     }
 
     private var presetLocked: Bool { !prefs.activePresetID.isEmpty }
@@ -189,6 +197,12 @@ struct CompressionConfirmationSheet: View {
                     lines: prefs.pdfCompressionPolicySummaryRows()
                 )
             }
+            if showAudioPolicyInSummary {
+                SummaryPolicyGroup(
+                    icon: "waveform",
+                    lines: prefs.audioCompressionPolicySummaryRows()
+                )
+            }
             if showRemoteOnlyPolicyInSummary {
                 SummaryStatRow(
                     icon: "link",
@@ -233,7 +247,7 @@ struct CompressionConfirmationSheet: View {
         }
         var segments: [(icon: String, count: Int)] = []
         var phrases: [String] = []
-        for t in [MediaType.image, .pdf, .video] {
+        for t in [MediaType.image, .video, .audio, .pdf] {
             if let c = counts[t], c > 0 {
                 segments.append((iconForMedia(t), c))
                 phrases.append(mediaCountLabel(type: t, count: c))
@@ -253,6 +267,7 @@ struct CompressionConfirmationSheet: View {
         case .image: key = "compress_confirm_images"
         case .pdf: key = "compress_confirm_pdfs"
         case .video: key = "compress_confirm_videos"
+        case .audio: key = "compress_confirm_audio"
         }
         return compressConfirmPluralCount(key, count: count)
     }
@@ -270,6 +285,7 @@ struct CompressionConfirmationSheet: View {
         case .image: return "photo"
         case .pdf: return "doc.text.fill"
         case .video: return "film"
+        case .audio: return "waveform"
         }
     }
 
@@ -351,6 +367,8 @@ struct CompressionConfirmationSheet: View {
             return prefs.pdfPendingRowSubtitleLine()
         case .video:
             return prefs.videoPendingRowSubtitleLine()
+        case .audio:
+            return prefs.audioPendingRowSubtitleLine()
         }
     }
 
@@ -455,6 +473,26 @@ struct CompressionConfirmationSheet: View {
             set: { new in
                 clearActivePresetForManualEdit()
                 prefs.videoCodecFamilyRaw = new
+            }
+        )
+    }
+
+    private var clearingAudioFormatBinding: Binding<String> {
+        Binding(
+            get: { prefs.audioFormatRaw },
+            set: { new in
+                clearActivePresetForManualEdit()
+                prefs.audioFormatRaw = new
+            }
+        )
+    }
+
+    private var clearingAudioQualityBinding: Binding<String> {
+        Binding(
+            get: { prefs.audioQualityTierRaw },
+            set: { new in
+                clearActivePresetForManualEdit()
+                prefs.audioQualityTierRaw = new
             }
         )
     }
@@ -570,7 +608,7 @@ struct CompressionConfirmationSheet: View {
                 if showSmartQualityToggle {
                     Toggle(String(localized: "Smart quality (all types)", comment: "Sidebar: global smart quality for images, PDF, and video."), isOn: clearingSmartQualityBinding)
                         .font(.callout)
-                    Text(String(localized: "When on, Dinky picks encoder strength per file (images, PDF flatten, video). Turn off for manual choices in each section below.", comment: "Compression confirm: smart quality footnote."))
+                    Text(String(localized: "When on, Dinky picks encoder strength per file (images, PDF flatten, video, audio). Turn off for manual choices in each section below.", comment: "Compression confirm: smart quality footnote."))
                         .font(.caption2)
                         .foregroundStyle(.tertiary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -598,6 +636,29 @@ struct CompressionConfirmationSheet: View {
                         QualityChipPicker(
                             options: pdfFlattenChipOptions,
                             selected: clearingPdfQualityBinding
+                        )
+                    }
+                }
+
+                if showAudioControls {
+                    confirmMediaSectionHeader(systemImage: "waveform", title: String(localized: "Audio", comment: "Compression confirm: media section."))
+                    Picker(String(localized: "Output format", comment: "Compression confirm: audio format picker."), selection: clearingAudioFormatBinding) {
+                        ForEach(AudioConversionFormat.allCases, id: \.rawValue) { f in
+                            Text(f.displayName).tag(f.rawValue)
+                        }
+                    }
+                    .labelsHidden()
+                    .pickerStyle(.menu)
+                    if (AudioConversionFormat(rawValue: prefs.audioFormatRaw) ?? .aacM4A) == .mp3 {
+                        Text(String(localized: "MP3 uses bundled LAME (LGPL); other formats use macOS conversion.", comment: "Compression confirm: LAME note."))
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    if !prefs.smartQuality {
+                        QualityChipPicker(
+                            options: AudioConversionQualityTier.allCases.map { ($0.displayName, $0.rawValue, "") },
+                            selected: clearingAudioQualityBinding
                         )
                     }
                 }

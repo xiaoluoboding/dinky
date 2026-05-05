@@ -101,7 +101,7 @@
     }
     .cmp-writeups-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px 32px;
       align-items: start;
     }
@@ -204,7 +204,7 @@
       border-radius: 9px;
       gap: 2px;
       width: 100%;
-      max-width: 320px;
+      max-width: 420px;
     }
     .cmp-tab {
       flex: 1 1 0;
@@ -249,16 +249,28 @@
     }
     .comparison-table[data-active-cat="image"] th[data-cat="video"],
     .comparison-table[data-active-cat="image"] th[data-cat="pdf"],
+    .comparison-table[data-active-cat="image"] th[data-cat="audio"],
     .comparison-table[data-active-cat="image"] td[data-col="video"],
     .comparison-table[data-active-cat="image"] td[data-col="pdf"],
+    .comparison-table[data-active-cat="image"] td[data-col="audio"],
     .comparison-table[data-active-cat="video"] th[data-cat="image"],
     .comparison-table[data-active-cat="video"] th[data-cat="pdf"],
+    .comparison-table[data-active-cat="video"] th[data-cat="audio"],
     .comparison-table[data-active-cat="video"] td[data-col="image"],
     .comparison-table[data-active-cat="video"] td[data-col="pdf"],
+    .comparison-table[data-active-cat="video"] td[data-col="audio"],
     .comparison-table[data-active-cat="pdf"] th[data-cat="image"],
     .comparison-table[data-active-cat="pdf"] th[data-cat="video"],
+    .comparison-table[data-active-cat="pdf"] th[data-cat="audio"],
     .comparison-table[data-active-cat="pdf"] td[data-col="image"],
-    .comparison-table[data-active-cat="pdf"] td[data-col="video"] { display: none; }
+    .comparison-table[data-active-cat="pdf"] td[data-col="video"],
+    .comparison-table[data-active-cat="pdf"] td[data-col="audio"],
+    .comparison-table[data-active-cat="audio"] th[data-cat="image"],
+    .comparison-table[data-active-cat="audio"] th[data-cat="video"],
+    .comparison-table[data-active-cat="audio"] th[data-cat="pdf"],
+    .comparison-table[data-active-cat="audio"] td[data-col="image"],
+    .comparison-table[data-active-cat="audio"] td[data-col="video"],
+    .comparison-table[data-active-cat="audio"] td[data-col="pdf"] { display: none; }
     .comparison-table thead th {
       padding: 0 16px 14px;
       font-size: 13px;
@@ -404,6 +416,7 @@
         flex: none;
         width: 100%;
         min-width: 0;
+        grid-template-columns: repeat(2, 1fr);
       }
       .cmp-writeups-grid { grid-template-columns: 1fr; gap: 20px; }
       .cmp-writeups-suite-cards { grid-template-columns: 1fr; }

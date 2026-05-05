@@ -46,6 +46,14 @@ public struct CompressionPreset: Codable, Identifiable, Sendable {
     public var videoRemoveAudio: Bool
     public var videoMaxResolutionEnabled: Bool
     public var videoMaxResolutionLines: Int
+    /// When true, caps output frame rate via `videoMaxFPS` (only down-cap when source nominal FPS is higher).
+    public var videoMaxFPSEnabled: Bool
+    /// Target FPS when `videoMaxFPSEnabled`; must be one of ``VideoFPSCapPreset.allowedValues``.
+    public var videoMaxFPS: Int
+    /// Stored ``AudioConversionFormat`` raw (`aac_m4a`, `mp3`, …).
+    public var audioFormatRaw: String
+    /// Stored ``AudioConversionQualityTier`` raw (`smallest`, `balanced`, `archival`).
+    public var audioQualityTierRaw: String
     public var pdfEnableOCR: Bool
     public var pdfOCRLanguages: [String]
 
@@ -91,6 +99,10 @@ public struct CompressionPreset: Codable, Identifiable, Sendable {
         videoRemoveAudio: Bool,
         videoMaxResolutionEnabled: Bool,
         videoMaxResolutionLines: Int,
+        videoMaxFPSEnabled: Bool,
+        videoMaxFPS: Int,
+        audioFormatRaw: String,
+        audioQualityTierRaw: String,
         pdfEnableOCR: Bool,
         pdfOCRLanguages: [String],
         createdAt: Date = .now
@@ -134,6 +146,10 @@ public struct CompressionPreset: Codable, Identifiable, Sendable {
         self.videoRemoveAudio = videoRemoveAudio
         self.videoMaxResolutionEnabled = videoMaxResolutionEnabled
         self.videoMaxResolutionLines = videoMaxResolutionLines
+        self.videoMaxFPSEnabled = videoMaxFPSEnabled
+        self.videoMaxFPS = videoMaxFPS
+        self.audioFormatRaw = audioFormatRaw
+        self.audioQualityTierRaw = audioQualityTierRaw
         self.pdfEnableOCR = pdfEnableOCR
         self.pdfOCRLanguages = pdfOCRLanguages
         self.createdAt = createdAt
@@ -181,6 +197,10 @@ public struct CompressionPreset: Codable, Identifiable, Sendable {
             videoRemoveAudio: source.videoRemoveAudio,
             videoMaxResolutionEnabled: source.videoMaxResolutionEnabled,
             videoMaxResolutionLines: source.videoMaxResolutionLines,
+            videoMaxFPSEnabled: source.videoMaxFPSEnabled,
+            videoMaxFPS: source.videoMaxFPS,
+            audioFormatRaw: source.audioFormatRaw,
+            audioQualityTierRaw: source.audioQualityTierRaw,
             pdfEnableOCR: source.pdfEnableOCR,
             pdfOCRLanguages: source.pdfOCRLanguages,
             createdAt: .now
@@ -234,6 +254,14 @@ public struct CompressionPreset: Codable, Identifiable, Sendable {
         videoRemoveAudio = try c.decodeIfPresent(Bool.self, forKey: .videoRemoveAudio) ?? false
         videoMaxResolutionEnabled = try c.decodeIfPresent(Bool.self, forKey: .videoMaxResolutionEnabled) ?? false
         videoMaxResolutionLines = try c.decodeIfPresent(Int.self, forKey: .videoMaxResolutionLines) ?? 1080
+        videoMaxFPSEnabled = try c.decodeIfPresent(Bool.self, forKey: .videoMaxFPSEnabled) ?? false
+        videoMaxFPS = VideoFPSCapPreset.normalizeStored(
+            try c.decodeIfPresent(Int.self, forKey: .videoMaxFPS) ?? VideoFPSCapPreset.defaultStoredFPS
+        )
+        audioFormatRaw = try c.decodeIfPresent(String.self, forKey: .audioFormatRaw)
+            ?? AudioConversionFormat.aacM4A.rawValue
+        audioQualityTierRaw = try c.decodeIfPresent(String.self, forKey: .audioQualityTierRaw)
+            ?? AudioConversionQualityTier.balanced.rawValue
         pdfEnableOCR = try c.decodeIfPresent(Bool.self, forKey: .pdfEnableOCR) ?? true
         if let langs = try c.decodeIfPresent([String].self, forKey: .pdfOCRLanguages), !langs.isEmpty {
             pdfOCRLanguages = langs

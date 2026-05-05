@@ -8,6 +8,10 @@ public struct DinkyVideoCompressOptions: Sendable {
     public var codec: VideoCodecFamily
     public var removeAudio: Bool
     public var maxResolutionLines: Int?
+    /// When true and source nominal FPS is above ``fpsCap``, export uses a capped frame duration.
+    public var fpsCapEnabled: Bool
+    /// Target cap (60 / 30 / 24 / 15); normalized on merge from presets.
+    public var fpsCap: Int
     public var smartQuality: Bool
     public var outputDir: URL?
     public var collisionStyle: CollisionNamingStyle
@@ -19,6 +23,8 @@ public struct DinkyVideoCompressOptions: Sendable {
         codec: VideoCodecFamily = .h264,
         removeAudio: Bool = false,
         maxResolutionLines: Int? = nil,
+        fpsCapEnabled: Bool = false,
+        fpsCap: Int = VideoFPSCapPreset.defaultStoredFPS,
         smartQuality: Bool = true,
         outputDir: URL? = nil,
         collisionStyle: CollisionNamingStyle = .finderDuplicate,
@@ -29,6 +35,8 @@ public struct DinkyVideoCompressOptions: Sendable {
         self.codec = codec
         self.removeAudio = removeAudio
         self.maxResolutionLines = maxResolutionLines
+        self.fpsCapEnabled = fpsCapEnabled
+        self.fpsCap = fpsCap
         self.smartQuality = smartQuality
         self.outputDir = outputDir
         self.collisionStyle = collisionStyle

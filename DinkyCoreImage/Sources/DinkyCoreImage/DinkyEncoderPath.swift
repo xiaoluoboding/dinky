@@ -37,6 +37,13 @@ public enum DinkyEncoderPath: Sendable {
         return u
     }
 
+    /// Bundled MP3 encoder (LAME); same folder as image encoders in the `.app`.
+    public static func lameExecutable(inBinDirectory dir: URL) -> URL? {
+        let u = dir.appendingPathComponent("lame")
+        guard FileManager.default.isExecutableFile(atPath: u.path) else { return nil }
+        return u
+    }
+
     /// Encoder directory that also includes an executable `qpdf` (needed for preserve-mode qpdf passes).
     public static func resolveBinDirectoryWithQpdf() -> URL? {
         guard let dir = resolveBinDirectory() else { return nil }

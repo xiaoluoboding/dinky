@@ -143,6 +143,8 @@ public enum DinkyVideoCompressCommand: Sendable {
                     codec: opts.codec,
                     removeAudio: opts.removeAudio,
                     maxResolutionLines: opts.maxResolutionLines,
+                    maxFPSEnabled: opts.fpsCapEnabled,
+                    storedMaxFPS: opts.fpsCap,
                     outputURL: uniqueOut,
                     progressHandler: nil
                 )

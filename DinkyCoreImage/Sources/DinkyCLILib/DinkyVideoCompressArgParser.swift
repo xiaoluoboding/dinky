@@ -77,6 +77,17 @@ public enum DinkyVideoCompressArgParser {
                     guard i < n, let h = Int(args[i]), h > 0 else { throw DinkyCLIParseError(message: "invalid --max-height") }
                     o.maxResolutionLines = h
                     explicit.insert("maxHeight")
+                case "--max-fps":
+                    i += 1
+                    guard i < n, let f = Int(args[i]), VideoFPSCapPreset.allowedValues.contains(f) else {
+                        throw DinkyCLIParseError(message: "invalid --max-fps (use 60, 30, 24, or 15)")
+                    }
+                    o.fpsCapEnabled = true
+                    o.fpsCap = f
+                    explicit.insert("maxFps")
+                case "--no-fps-cap":
+                    o.fpsCapEnabled = false
+                    explicit.insert("maxFps")
                 case "--no-smart-quality":
                     o.smartQuality = false
                     explicit.insert("smartQuality")

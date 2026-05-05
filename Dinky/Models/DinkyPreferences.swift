@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import DinkyCoreShared
 
 enum SaveLocation: String, CaseIterable, Identifiable {
     case sameFolder = "sameFolder"
@@ -158,6 +159,7 @@ final class DinkyPreferences: ObservableObject {
     @AppStorage("sidebar.showImages") var showImagesSection: Bool = true
     @AppStorage("sidebar.showPDFs")   var showPDFsSection:   Bool = true
     @AppStorage("sidebar.showVideos") var showVideosSection:  Bool = true
+    @AppStorage("sidebar.showAudio") var showAudioSection: Bool = true
 
     /// Simplified in-window sidebar (default): quick choices, output summary, and Settings shortcuts.
     @AppStorage("sidebar.simpleMode") var sidebarSimpleMode: Bool = true
@@ -168,10 +170,12 @@ final class DinkyPreferences: ObservableObject {
         if simple {
             showImagesSection = false
             showVideosSection = false
+            showAudioSection = false
             showPDFsSection = false
         } else {
             showImagesSection = true
             showVideosSection = true
+            showAudioSection = true
             showPDFsSection = true
         }
     }
@@ -179,21 +183,22 @@ final class DinkyPreferences: ObservableObject {
     /// Migrates older preferences where simple mode was on but section toggles were still true.
     func reconcileSidebarSectionsForSimpleModeIfNeeded() {
         guard sidebarSimpleMode else { return }
-        if showImagesSection || showVideosSection || showPDFsSection {
+        if showImagesSection || showVideosSection || showPDFsSection || showAudioSection {
             showImagesSection = false
             showVideosSection = false
+            showAudioSection = false
             showPDFsSection = false
         }
     }
 
     /// Turning off Images, Videos, and PDFs in the full sidebar enables simple mode (same as choosing it explicitly).
     func adoptSimpleSidebarWhenAllSectionsHidden() {
-        guard !showImagesSection, !showVideosSection, !showPDFsSection else { return }
+        guard !showImagesSection, !showVideosSection, !showPDFsSection, !showAudioSection else { return }
         applySidebarSimpleMode(true)
     }
 
     enum SidebarScopedSection {
-        case images, videos, pdfs
+        case images, videos, audio, pdfs
     }
 
     /// Updates Images / Videos / PDFs visibility. Turning any section **on** while simple sidebar is active leaves simple mode off and only changes that toggle (others unchanged).
@@ -204,6 +209,7 @@ final class DinkyPreferences: ObservableObject {
         switch section {
         case .images: showImagesSection = isOn
         case .videos: showVideosSection = isOn
+        case .audio: showAudioSection = isOn
         case .pdfs: showPDFsSection = isOn
         }
         adoptSimpleSidebarWhenAllSectionsHidden()
@@ -277,6 +283,23 @@ final class DinkyPreferences: ObservableObject {
     @AppStorage("videoMaxResolutionEnabled") var videoMaxResolutionEnabled: Bool = false
     /// Output height in pixels (matches one of the available `AVAssetExportPreset…` heights: 480 / 720 / 1080 / 2160).
     @AppStorage("videoMaxResolutionLines")   var videoMaxResolutionLines: Int = 1080
+    /// When on, lowers output FPS when source nominal FPS is higher than ``videoMaxFPS`` (see ``VideoFPSCapPreset``).
+    @AppStorage("videoMaxFPSEnabled") var videoMaxFPSEnabled: Bool = false
+    /// Stored cap; validated with ``VideoFPSCapPreset.normalizeStored``.
+    @AppStorage("videoMaxFPS") var videoMaxFPS: Int = VideoFPSCapPreset.defaultStoredFPS
+
+    @AppStorage("audioFormatRaw") var audioFormatRaw: String = AudioConversionFormat.aacM4A.rawValue
+    @AppStorage("audioQualityTierRaw") var audioQualityTierRaw: String = AudioConversionQualityTier.balanced.rawValue
+
+    var audioConversionFormat: AudioConversionFormat {
+        get { AudioConversionFormat(rawValue: audioFormatRaw) ?? .aacM4A }
+        set { audioFormatRaw = newValue.rawValue }
+    }
+
+    var audioQualityTier: AudioConversionQualityTier {
+        get { AudioConversionQualityTier.resolve(audioQualityTierRaw) }
+        set { audioQualityTierRaw = newValue.rawValue }
+    }
 
     // MARK: Lifetime stats
     @AppStorage("lifetimeSavedBytesRaw") var lifetimeSavedBytesRaw: Double = 0
@@ -579,6 +602,21 @@ final class DinkyPreferences: ObservableObject {
                 if out.count > 75 { out = String(out.prefix(75)) }
             }
             return dir.appendingPathComponent(out).appendingPathExtension("mp4")
+        case .audio:
+            let ext = audioConversionFormat.fileExtension
+            let dir = destinationDirectory(for: source, isFromURLDownload: isFromURLDownload)
+            let stem = source.deletingPathExtension().lastPathComponent
+            var out: String
+            switch filenameHandling {
+            case .appendSuffix: out = stem + "-dinky"
+            case .replaceOrigin: out = stem
+            case .customSuffix: out = stem + (customSuffix.isEmpty ? "-dinky" : customSuffix)
+            }
+            if sanitizeFilenames {
+                out = out.lowercased().replacingOccurrences(of: " ", with: "-")
+                if out.count > 75 { out = String(out.prefix(75)) }
+            }
+            return dir.appendingPathComponent(out).appendingPathExtension(ext)
         }
     }
 
@@ -644,7 +682,9 @@ final class DinkyPreferences: ObservableObject {
         quality: VideoQuality,
         codec: VideoCodecFamily,
         removeAudio: Bool,
-        maxResolutionLines: Int?
+        maxResolutionLines: Int?,
+        fpsCapEnabled: Bool,
+        fpsCap: Int
     ) {
         let d = UserDefaults.standard
         let vqRaw = d.string(forKey: "videoQuality") ?? VideoQuality.high.rawValue
@@ -655,7 +695,24 @@ final class DinkyPreferences: ObservableObject {
         let maxOn = d.object(forKey: "videoMaxResolutionEnabled") as? Bool ?? false
         let lines = d.object(forKey: "videoMaxResolutionLines") as? Int ?? 1080
         let maxRes: Int? = maxOn ? lines : nil
-        return (quality, codec, removeAudio, maxRes)
+        let fpsOn = d.object(forKey: "videoMaxFPSEnabled") as? Bool ?? false
+        let fpsRaw = d.object(forKey: "videoMaxFPS") as? Int ?? VideoFPSCapPreset.defaultStoredFPS
+        let fpsNorm = VideoFPSCapPreset.normalizeStored(fpsRaw)
+        return (quality, codec, removeAudio, maxRes, fpsOn, fpsNorm)
+    }
+
+    static func audioCompressionSettingsForIntent() -> (
+        format: AudioConversionFormat,
+        tier: AudioConversionQualityTier,
+        smartQuality: Bool
+    ) {
+        let d = UserDefaults.standard
+        let fRaw = d.string(forKey: "audioFormatRaw") ?? AudioConversionFormat.aacM4A.rawValue
+        let format = AudioConversionFormat(rawValue: fRaw) ?? .aacM4A
+        let tRaw = d.string(forKey: "audioQualityTierRaw") ?? AudioConversionQualityTier.balanced.rawValue
+        let tier = AudioConversionQualityTier.resolve(tRaw)
+        let smart = d.object(forKey: "smartQuality") as? Bool ?? true
+        return (format, tier, smart)
     }
 
     // MARK: - Compression confirmation summary (shared with sidebar output hints)
@@ -753,6 +810,38 @@ final class DinkyPreferences: ObservableObject {
         if videoRemoveAudio {
             rows.append(String(localized: "Videos: audio stripped from output", comment: "Compression confirm: video strip audio."))
         }
+        if videoMaxFPSEnabled {
+            let cap = VideoFPSCapPreset.normalizeStored(videoMaxFPS)
+            rows.append(
+                String.localizedStringWithFormat(
+                    String(localized: "Videos: cap frame rate at %lld fps when source runs higher", comment: "Compression confirm: video FPS cap."),
+                    Int64(cap)
+                )
+            )
+        }
+        return rows
+    }
+
+    func audioCompressionPolicySummaryRows() -> [String] {
+        let fmt = audioConversionFormat
+        var rows: [String] = [
+            String.localizedStringWithFormat(
+                String(localized: "Audio: convert to %@", comment: "Compression confirm: audio target format."),
+                fmt.displayName
+            ),
+        ]
+        if smartQuality {
+            rows.append(
+                String(localized: "Audio: Smart Quality adjusts format or tier from file bitrate (when applicable).", comment: "Compression confirm: audio smart quality.")
+            )
+        } else {
+            rows.append(
+                String.localizedStringWithFormat(
+                    String(localized: "Audio: fixed quality — %@", comment: "Compression confirm: audio manual tier."),
+                    audioQualityTier.displayName
+                )
+            )
+        }
         return rows
     }
 
@@ -815,6 +904,17 @@ final class DinkyPreferences: ObservableObject {
             return head + " · " + String(localized: "Smart", comment: "Compression confirm: smart quality short label.")
         }
         return head + " · " + videoQuality.displayName
+    }
+
+    func audioPendingRowSubtitleLine() -> String {
+        let head = String.localizedStringWithFormat(
+            String(localized: "Audio → %@", comment: "Compression confirm: audio row; format name."),
+            audioConversionFormat.displayName
+        )
+        if smartQuality {
+            return head + " · " + String(localized: "Smart", comment: "Compression confirm: smart quality short label.")
+        }
+        return head + " · " + audioQualityTier.displayName
     }
 
     /// Per-row subtitle for a queued PDF (matches global prefs).

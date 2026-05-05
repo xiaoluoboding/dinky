@@ -3,149 +3,120 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C935CFD2FA7D7CD00FB20CD /* DinkyCoreImage in Frameworks */ = {isa = PBXBuildFile; productRef = DCI1000010000000000001 /* DinkyCoreImage */; };
+		5C935CFE2FA7D7CD00FB20CD /* DinkyCoreShared in Frameworks */ = {isa = PBXBuildFile; productRef = DCS1000010000000000001 /* DinkyCoreShared */; };
+		5C935CFF2FA7D7CD00FB20CD /* DinkyCoreVideo in Frameworks */ = {isa = PBXBuildFile; productRef = DCV1000010000000000001 /* DinkyCoreVideo */; };
+		5C935D002FA7D7CD00FB20CD /* DinkyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = DCA1000010000000000001 /* DinkyCoreAudio */; };
+		5C935D012FA7D7CD00FB20CD /* DinkyCorePDF in Frameworks */ = {isa = PBXBuildFile; productRef = DCP1000010000000000001 /* DinkyCorePDF */; };
+		5C935D022FA7D7CD00FB20CD /* DinkyCoreShared in Frameworks */ = {isa = PBXBuildFile; productRef = DCS1000010000000000001 /* DinkyCoreShared */; };
 		5CBDB89C2F9041F600E7E9C0 /* avifenc in Resources */ = {isa = PBXBuildFile; fileRef = 5CBDB8972F9041F600E7E9C0 /* avifenc */; };
 		5CBDB89D2F9041F600E7E9C0 /* oxipng in Resources */ = {isa = PBXBuildFile; fileRef = 5CBDB89A2F9041F600E7E9C0 /* oxipng */; };
 		5CBDB89E2F9041F600E7E9C0 /* cwebp in Resources */ = {isa = PBXBuildFile; fileRef = 5CBDB8992F9041F600E7E9C0 /* cwebp */; };
-		AI000001000000000000001 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AI100001000000000000001 /* AppIcon.icon */; };
-		QP000001000000000000001 /* qpdf in Resources */ = {isa = PBXBuildFile; fileRef = QP100001000000000000001 /* qpdf */; };
 		AA000001000000000000001 /* DinkyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983E259BC5A494A9D936B63 /* DinkyApp.swift */; };
 		AA000002000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F9AD6A1BD04233828DC140 /* ContentView.swift */; };
 		AA000003000000000000003 /* CompressionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB16B6B1534C999F261F79 /* CompressionService.swift */; };
 		AA000004000000000000004 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ED8C350A5D404EA5F1CCF6 /* PreferencesView.swift */; };
 		AA000005000000000000005 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE17DC818E44D3F88D6F88A /* Strings.swift */; };
 		AA000006000000000000006 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDD8F0AED14F8CA2C3F9A7 /* ImageItem.swift */; };
-		DCBFMT0001 /* CompressionFormat+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRFMT0001 /* CompressionFormat+App.swift */; };
-		DCBSHR0001 /* SharedEnums+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRSHR0001 /* SharedEnums+App.swift */; };
-		DCBEXP0001 /* DinkyCoreImageExports.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCREXP0001 /* DinkyCoreImageExports.swift */; };
-		DCBERR0001 /* DinkyImageCompression+AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRERR0001 /* DinkyImageCompression+AppError.swift */; };
 		AA000008000000000000008 /* DinkyPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3DAE858994431BC84C13F /* DinkyPreferences.swift */; };
 		AA000009000000000000009 /* DropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D9DE1C999B470FBB27E454 /* DropZoneView.swift */; };
 		AA000010000000000000010 /* ResultsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63EBD7088E4C9BAB7A45DC /* ResultsRowView.swift */; };
-		CCS000001000000000000001 /* CompressionConfirmationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCS100001000000000000001 /* CompressionConfirmationSheet.swift */; };
 		AA000011000000000000011 /* AntyMascotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1032BF7B7A74FAF99A74DB7 /* AntyMascotView.swift */; };
 		AA000012000000000000012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74EE7205601D464484113FEB /* Assets.xcassets */; };
 		AA000013000000000000013 /* Preview Content/Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71A34AFC5CA41FDACAEE19D /* Preview Content/Preview Assets.xcassets */; };
-		BB000001000000000000001 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB100001000000000000001 /* SidebarView.swift */; };
-		SC000001000000000000001 /* SettingsChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = SC100001000000000000001 /* SettingsChrome.swift */; };
-		DD000003000000000000003 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000002000000000000002 /* AppDelegate.swift */; };
-		UC000001000000000000001 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = UC100001000000000000001 /* UpdateChecker.swift */; };
-		UB000001000000000000001 /* UpdateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = UB100001000000000000001 /* UpdateBanner.swift */; };
-		RB000001000000000000001 /* ReviewPromptBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = RB100001000000000000001 /* ReviewPromptBanner.swift */; };
-		ICFR0000010000000000001 /* ImageCompressionFormatResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */; };
 		AG000001000000000000001 /* View+AdaptiveGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AG100001000000000000001 /* View+AdaptiveGlass.swift */; };
-		LB000001000000000000001 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = LB100001000000000000001 /* lib */; };
-		CI000001000000000000001 /* ClipboardImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CI100001000000000000001 /* ClipboardImporter.swift */; };
-		CU000001000000000000001 /* CompressionUndo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CU100001000000000000001 /* CompressionUndo.swift */; };
-		UD000001000000000000001 /* URLDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = UD100001000000000000001 /* URLDownloader.swift */; };
-		LL000001000000000000001 /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL100001000000000000001 /* LaunchAtLoginManager.swift */; };
-		FW000001000000000000001 /* FolderWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FW100001000000000000001 /* FolderWatcher.swift */; };
-		IPS00001000000000000001 /* ImagePreviewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = IPS10001000000000000001 /* ImagePreviewSheet.swift */; };
-		HS000001000000000000001 /* HistorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = HS100001000000000000001 /* HistorySheet.swift */; };
+		AI000001000000000000001 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AI100001000000000000001 /* AppIcon.icon */; };
+		ASH00001000000000000001 /* DinkyAppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ASH10001000000000000001 /* DinkyAppShortcuts.swift */; };
+		BB000001000000000000001 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB100001000000000000001 /* SidebarView.swift */; };
 		BC000001000000000000001 /* BatchCompletionSummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC100001000000000000001 /* BatchCompletionSummarySheet.swift */; };
-		SSR000001000000000000001 /* SummaryStatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = SSR100001000000000000001 /* SummaryStatRow.swift */; };
+		CCS000001000000000000001 /* CompressionConfirmationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCS100001000000000000001 /* CompressionConfirmationSheet.swift */; };
+		CI000001000000000000001 /* ClipboardImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CI100001000000000000001 /* ClipboardImporter.swift */; };
+		CPAAPP001000000000000001 /* CompressionPreset+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CPAAPP101000000000000001 /* CompressionPreset+App.swift */; };
 		CRD000001000000000000001 /* CompressionResultDetailSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CRD100001000000000000001 /* CompressionResultDetailSheets.swift */; };
-		SR000001000000000000001 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = SR100001000000000000001 /* SessionRecord.swift */; };
+		CU000001000000000000001 /* CompressionUndo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CU100001000000000000001 /* CompressionUndo.swift */; };
+		DCBERR0001 /* DinkyImageCompression+AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRERR0001 /* DinkyImageCompression+AppError.swift */; };
+		DCBEXP0001 /* DinkyCoreImageExports.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCREXP0001 /* DinkyCoreImageExports.swift */; };
+		DCBFMT0001 /* CompressionFormat+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRFMT0001 /* CompressionFormat+App.swift */; };
+		DCBSHR0001 /* SharedEnums+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCRSHR0001 /* SharedEnums+App.swift */; };
+		DD000003000000000000003 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000002000000000000002 /* AppDelegate.swift */; };
+		DR000001000000000000001 /* DiagnosticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DR100001000000000000001 /* DiagnosticsReporter.swift */; };
+		FC000001000000000000001 /* FinderCommentsCopier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC100001000000000000001 /* FinderCommentsCopier.swift */; };
+		FW000001000000000000001 /* FolderWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FW100001000000000000001 /* FolderWatcher.swift */; };
+		GH000001000000000000001 /* GlobalHotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = GH100001000000000000001 /* GlobalHotkeyManager.swift */; };
+		HM000001000000000000001 /* Help.md in Resources */ = {isa = PBXBuildFile; fileRef = HMVGRP00000000000000001 /* Help.md */; };
+		HS000001000000000000001 /* HistorySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = HS100001000000000000001 /* HistorySheet.swift */; };
+		HW000001000000000000001 /* HelpWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = HW100001000000000000001 /* HelpWindow.swift */; };
+		ICAT00000100000000000001 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = ICATREF0000000000000001 /* InfoPlist.xcstrings */; };
+		ICFR0000010000000000001 /* ImageCompressionFormatResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */; };
 		INT00001000000000000001 /* CompressImagesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = INT10001000000000000001 /* CompressImagesIntent.swift */; };
 		INT00002000000000000001 /* CompressPDFIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = INT10002000000000000001 /* CompressPDFIntent.swift */; };
 		INT00003000000000000001 /* CompressVideoIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = INT10003000000000000001 /* CompressVideoIntent.swift */; };
-		ASH00001000000000000001 /* DinkyAppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ASH10001000000000000001 /* DinkyAppShortcuts.swift */; };
-		WR000001000000000000001 /* WatchRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = WR100001000000000000001 /* WatchRegistry.swift */; };
-		HW000001000000000000001 /* HelpWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = HW100001000000000000001 /* HelpWindow.swift */; };
-		HM000001000000000000001 /* Help.md in Resources */ = {isa = PBXBuildFile; fileRef = HMVGRP00000000000000001 /* Help.md */; };
-		LCAT00000100000000000001 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = LCATREF0000000000000001 /* Localizable.xcstrings */; };
-		ICAT00000100000000000001 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = ICATREF0000000000000001 /* InfoPlist.xcstrings */; };
+		IPS00001000000000000001 /* ImagePreviewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = IPS10001000000000000001 /* ImagePreviewSheet.swift */; };
 		KS000001000000000000001 /* CustomShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = KS100001000000000000001 /* CustomShortcut.swift */; };
-		CPAAPP001000000000000001 /* CompressionPreset+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CPAAPP101000000000000001 /* CompressionPreset+App.swift */; };
+		LB000001000000000000001 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = LB100001000000000000001 /* lib */; };
+		LCAT00000100000000000001 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = LCATREF0000000000000001 /* Localizable.xcstrings */; };
+		LL000001000000000000001 /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = LL100001000000000000001 /* LaunchAtLoginManager.swift */; };
+		LM000001000000000000001 /* lame in Resources */ = {isa = PBXBuildFile; fileRef = LM100001000000000000001 /* lame */; };
 		MTAAPP001000000000000001 /* MediaType+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = MTAAPP101000000000000001 /* MediaType+App.swift */; };
+		QP000001000000000000001 /* qpdf in Resources */ = {isa = PBXBuildFile; fileRef = QP100001000000000000001 /* qpdf */; };
+		RB000001000000000000001 /* ReviewPromptBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = RB100001000000000000001 /* ReviewPromptBanner.swift */; };
+		SC000001000000000000001 /* SettingsChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = SC100001000000000000001 /* SettingsChrome.swift */; };
 		SH000001000000000000001 /* ShortcutRecorderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = SH100001000000000000001 /* ShortcutRecorderField.swift */; };
-		GH000001000000000000001 /* GlobalHotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = GH100001000000000000001 /* GlobalHotkeyManager.swift */; };
-		DR000001000000000000001 /* DiagnosticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DR100001000000000000001 /* DiagnosticsReporter.swift */; };
-		FC000001000000000000001 /* FinderCommentsCopier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC100001000000000000001 /* FinderCommentsCopier.swift */; };
 		SP000001000000000000001 /* SavingsPerspective.swift in Sources */ = {isa = PBXBuildFile; fileRef = SP100001000000000000001 /* SavingsPerspective.swift */; };
+		SR000001000000000000001 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = SR100001000000000000001 /* SessionRecord.swift */; };
+		SSR000001000000000000001 /* SummaryStatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = SSR100001000000000000001 /* SummaryStatRow.swift */; };
+		UB000001000000000000001 /* UpdateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = UB100001000000000000001 /* UpdateBanner.swift */; };
+		UC000001000000000000001 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = UC100001000000000000001 /* UpdateChecker.swift */; };
+		UD000001000000000000001 /* URLDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = UD100001000000000000001 /* URLDownloader.swift */; };
+		WR000001000000000000001 /* WatchRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = WR100001000000000000001 /* WatchRegistry.swift */; };
 		XTBLD00000000000000001 /* PDFScanDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = XTREF00000000000000001 /* PDFScanDetectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06FD4F8D9AC8412C83F517C6 /* Dinky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dinky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1983E259BC5A494A9D936B63 /* DinkyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyApp.swift; sourceTree = "<group>"; };
-		AI100001000000000000001 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		4FE17DC818E44D3F88D6F88A /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		4FFDD8F0AED14F8CA2C3F9A7 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		56D9DE1C999B470FBB27E454 /* DropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneView.swift; sourceTree = "<group>"; };
 		5B63EBD7088E4C9BAB7A45DC /* ResultsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsRowView.swift; sourceTree = "<group>"; };
-		CCS100001000000000000001 /* CompressionConfirmationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionConfirmationSheet.swift; sourceTree = "<group>"; };
 		5BC7D00FC2B14EF09CB7F833 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5BEB16B6B1534C999F261F79 /* CompressionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionService.swift; sourceTree = "<group>"; };
 		5CBDB8972F9041F600E7E9C0 /* avifenc */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = avifenc; sourceTree = "<group>"; };
-		LB100001000000000000001 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		5CBDB8992F9041F600E7E9C0 /* cwebp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = cwebp; sourceTree = "<group>"; };
 		5CBDB89A2F9041F600E7E9C0 /* oxipng */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = oxipng; sourceTree = "<group>"; };
-		QP100001000000000000001 /* qpdf */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = qpdf; sourceTree = "<group>"; };
 		74EE7205601D464484113FEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89ED8C350A5D404EA5F1CCF6 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		96F9AD6A1BD04233828DC140 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AG100001000000000000001 /* View+AdaptiveGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AdaptiveGlass.swift"; sourceTree = "<group>"; };
+		AI100001000000000000001 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		ASH10001000000000000001 /* DinkyAppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyAppShortcuts.swift; sourceTree = "<group>"; };
+		BB100001000000000000001 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		BC100001000000000000001 /* BatchCompletionSummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCompletionSummarySheet.swift; sourceTree = "<group>"; };
+		CCS100001000000000000001 /* CompressionConfirmationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionConfirmationSheet.swift; sourceTree = "<group>"; };
+		CI100001000000000000001 /* ClipboardImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardImporter.swift; sourceTree = "<group>"; };
+		CPAAPP101000000000000001 /* CompressionPreset+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompressionPreset+App.swift"; sourceTree = "<group>"; };
+		CRD100001000000000000001 /* CompressionResultDetailSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionResultDetailSheets.swift; sourceTree = "<group>"; };
+		CU100001000000000000001 /* CompressionUndo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionUndo.swift; sourceTree = "<group>"; };
+		D1032BF7B7A74FAF99A74DB7 /* AntyMascotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntyMascotView.swift; sourceTree = "<group>"; };
+		DCRERR0001 /* DinkyImageCompression+AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DinkyImageCompression+AppError.swift"; sourceTree = "<group>"; };
+		DCREXP0001 /* DinkyCoreImageExports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyCoreImageExports.swift; sourceTree = "<group>"; };
 		DCRFMT0001 /* CompressionFormat+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompressionFormat+App.swift"; sourceTree = "<group>"; };
 		DCRSHR0001 /* SharedEnums+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SharedEnums+App.swift"; sourceTree = "<group>"; };
-		CPAAPP101000000000000001 /* CompressionPreset+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompressionPreset+App.swift"; sourceTree = "<group>"; };
-		MTAAPP101000000000000001 /* MediaType+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaType+App.swift"; sourceTree = "<group>"; };
-		DCREXP0001 /* DinkyCoreImageExports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyCoreImageExports.swift; sourceTree = "<group>"; };
-		DCRERR0001 /* DinkyImageCompression+AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DinkyImageCompression+AppError.swift"; sourceTree = "<group>"; };
-		BB100001000000000000001 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
-		SC100001000000000000001 /* SettingsChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsChrome.swift; sourceTree = "<group>"; };
-		UC100001000000000000001 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
-		UB100001000000000000001 /* UpdateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBanner.swift; sourceTree = "<group>"; };
-		RB100001000000000000001 /* ReviewPromptBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptBanner.swift; sourceTree = "<group>"; };
-		ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressionFormatResolver.swift; sourceTree = "<group>"; };
-		AG100001000000000000001 /* View+AdaptiveGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+AdaptiveGlass.swift"; sourceTree = "<group>"; };
-		D1032BF7B7A74FAF99A74DB7 /* AntyMascotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntyMascotView.swift; sourceTree = "<group>"; };
 		DD000001000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD000002000000000000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DR100001000000000000001 /* DiagnosticsReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsReporter.swift; sourceTree = "<group>"; };
 		E71A34AFC5CA41FDACAEE19D /* Preview Content/Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Content/Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F5D3DAE858994431BC84C13F /* DinkyPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyPreferences.swift; sourceTree = "<group>"; };
 		F68BBF685BAD4911BEC725DB /* Dinky.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dinky.entitlements; sourceTree = "<group>"; };
-		CI100001000000000000001 /* ClipboardImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardImporter.swift; sourceTree = "<group>"; };
-		CU100001000000000000001 /* CompressionUndo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionUndo.swift; sourceTree = "<group>"; };
-		UD100001000000000000001 /* URLDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDownloader.swift; sourceTree = "<group>"; };
-		LL100001000000000000001 /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
+		FC100001000000000000001 /* FinderCommentsCopier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCommentsCopier.swift; sourceTree = "<group>"; };
 		FW100001000000000000001 /* FolderWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderWatcher.swift; sourceTree = "<group>"; };
-		IPS10001000000000000001 /* ImagePreviewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewSheet.swift; sourceTree = "<group>"; };
-		HS100001000000000000001 /* HistorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySheet.swift; sourceTree = "<group>"; };
-		BC100001000000000000001 /* BatchCompletionSummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCompletionSummarySheet.swift; sourceTree = "<group>"; };
-		SSR100001000000000000001 /* SummaryStatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStatRow.swift; sourceTree = "<group>"; };
-		CRD100001000000000000001 /* CompressionResultDetailSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionResultDetailSheets.swift; sourceTree = "<group>"; };
-		SR100001000000000000001 /* SessionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
-		INT10001000000000000001 /* CompressImagesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressImagesIntent.swift; sourceTree = "<group>"; };
-		INT10002000000000000001 /* CompressPDFIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressPDFIntent.swift; sourceTree = "<group>"; };
-		INT10003000000000000001 /* CompressVideoIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressVideoIntent.swift; sourceTree = "<group>"; };
-		ASH10001000000000000001 /* DinkyAppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinkyAppShortcuts.swift; sourceTree = "<group>"; };
-		WR100001000000000000001 /* WatchRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRegistry.swift; sourceTree = "<group>"; };
-		HW100001000000000000001 /* HelpWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpWindow.swift; sourceTree = "<group>"; };
-		HMVGRP00000000000000001 /* Help.md */ = {
-			isa = PBXVariantGroup;
-			children = (
-				HMEN0000000000000000001 /* Help.md */,
-				HMDE0000000000000000001 /* Help.md */,
-				HMES0000000000000000001 /* Help.md */,
-				HMFR0000000000000000001 /* Help.md */,
-				HMIT0000000000000000001 /* Help.md */,
-				HMJA0000000000000000001 /* Help.md */,
-				HMKO0000000000000000001 /* Help.md */,
-				HMNL0000000000000000001 /* Help.md */,
-				HMPT0000000000000000001 /* Help.md */,
-				HMRU0000000000000000001 /* Help.md */,
-				HMTR0000000000000000001 /* Help.md */,
-				HMZH0000000000000000001 /* Help.md */,
-				HMZHT000000000000000001 /* Help.md */,
-			);
-			name = Help.md;
-			sourceTree = "<group>";
-		};
-		HMEN0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = en.lproj/Help.md; sourceTree = "<group>"; };
+		GH100001000000000000001 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
 		HMDE0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = de.lproj/Help.md; sourceTree = "<group>"; };
+		HMEN0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = en.lproj/Help.md; sourceTree = "<group>"; };
 		HMES0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = es.lproj/Help.md; sourceTree = "<group>"; };
 		HMFR0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = fr.lproj/Help.md; sourceTree = "<group>"; };
 		HMIT0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = it.lproj/Help.md; sourceTree = "<group>"; };
@@ -157,16 +128,33 @@
 		HMTR0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = tr.lproj/Help.md; sourceTree = "<group>"; };
 		HMZH0000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = "zh-Hans.lproj/Help.md"; sourceTree = "<group>"; };
 		HMZHT000000000000000001 /* Help.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Help.md; path = "zh-Hant.lproj/Help.md"; sourceTree = "<group>"; };
-		LCATREF0000000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		HS100001000000000000001 /* HistorySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySheet.swift; sourceTree = "<group>"; };
+		HW100001000000000000001 /* HelpWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpWindow.swift; sourceTree = "<group>"; };
 		ICATREF0000000000000001 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCompressionFormatResolver.swift; sourceTree = "<group>"; };
+		INT10001000000000000001 /* CompressImagesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressImagesIntent.swift; sourceTree = "<group>"; };
+		INT10002000000000000001 /* CompressPDFIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressPDFIntent.swift; sourceTree = "<group>"; };
+		INT10003000000000000001 /* CompressVideoIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressVideoIntent.swift; sourceTree = "<group>"; };
+		IPS10001000000000000001 /* ImagePreviewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewSheet.swift; sourceTree = "<group>"; };
 		KS100001000000000000001 /* CustomShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShortcut.swift; sourceTree = "<group>"; };
+		LB100001000000000000001 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		LCATREF0000000000000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		LL100001000000000000001 /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
+		LM100001000000000000001 /* lame */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = lame; sourceTree = "<group>"; };
+		MTAAPP101000000000000001 /* MediaType+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MediaType+App.swift"; sourceTree = "<group>"; };
+		QP100001000000000000001 /* qpdf */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = qpdf; sourceTree = "<group>"; };
+		RB100001000000000000001 /* ReviewPromptBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptBanner.swift; sourceTree = "<group>"; };
+		SC100001000000000000001 /* SettingsChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsChrome.swift; sourceTree = "<group>"; };
 		SH100001000000000000001 /* ShortcutRecorderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderField.swift; sourceTree = "<group>"; };
-		GH100001000000000000001 /* GlobalHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotkeyManager.swift; sourceTree = "<group>"; };
-		DR100001000000000000001 /* DiagnosticsReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsReporter.swift; sourceTree = "<group>"; };
-		FC100001000000000000001 /* FinderCommentsCopier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCommentsCopier.swift; sourceTree = "<group>"; };
 		SP100001000000000000001 /* SavingsPerspective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsPerspective.swift; sourceTree = "<group>"; };
-		XTREF00000000000000001 /* PDFScanDetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFScanDetectionTests.swift; sourceTree = "<group>"; };
+		SR100001000000000000001 /* SessionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
+		SSR100001000000000000001 /* SummaryStatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStatRow.swift; sourceTree = "<group>"; };
+		UB100001000000000000001 /* UpdateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBanner.swift; sourceTree = "<group>"; };
+		UC100001000000000000001 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
+		UD100001000000000000001 /* URLDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDownloader.swift; sourceTree = "<group>"; };
+		WR100001000000000000001 /* WatchRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRegistry.swift; sourceTree = "<group>"; };
 		XTPRD00000000000000001 /* DinkyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DinkyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		XTREF00000000000000001 /* PDFScanDetectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFScanDetectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +162,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C935D012FA7D7CD00FB20CD /* DinkyCorePDF in Frameworks */,
+				5C935D002FA7D7CD00FB20CD /* DinkyCoreAudio in Frameworks */,
+				5C935CFF2FA7D7CD00FB20CD /* DinkyCoreVideo in Frameworks */,
+				5C935CFE2FA7D7CD00FB20CD /* DinkyCoreShared in Frameworks */,
+				5C935CFD2FA7D7CD00FB20CD /* DinkyCoreImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C935D022FA7D7CD00FB20CD /* DinkyCoreShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,34 +218,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		SV100001000000000000001 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				UC100001000000000000001 /* UpdateChecker.swift */,
-				CU100001000000000000001 /* CompressionUndo.swift */,
-				UD100001000000000000001 /* URLDownloader.swift */,
-				LL100001000000000000001 /* LaunchAtLoginManager.swift */,
-				ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */,
-				CI100001000000000000001 /* ClipboardImporter.swift */,
-				FW100001000000000000001 /* FolderWatcher.swift */,
-				WR100001000000000000001 /* WatchRegistry.swift */,
-				GH100001000000000000001 /* GlobalHotkeyManager.swift */,
-				DR100001000000000000001 /* DiagnosticsReporter.swift */,
-				FC100001000000000000001 /* FinderCommentsCopier.swift */,
-				DCRERR0001 /* DinkyImageCompression+AppError.swift */,
-				SP100001000000000000001 /* SavingsPerspective.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		EX100001000000000000001 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				AG100001000000000000001 /* View+AdaptiveGlass.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		3337D9E5CCB647BAA20571DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,17 +225,6 @@
 				XTPRD00000000000000001 /* DinkyTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		INTGRP001000000000000001 /* Intents */ = {
-			isa = PBXGroup;
-			children = (
-				INT10001000000000000001 /* CompressImagesIntent.swift */,
-				INT10002000000000000001 /* CompressPDFIntent.swift */,
-				INT10003000000000000001 /* CompressVideoIntent.swift */,
-				ASH10001000000000000001 /* DinkyAppShortcuts.swift */,
-			);
-			path = Intents;
 			sourceTree = "<group>";
 		};
 		4E72C0A5F2794B39AD3A51DF /* Dinky */ = {
@@ -318,14 +273,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		XTGRP00000000000000001 /* DinkyTests */ = {
-			isa = PBXGroup;
-			children = (
-				XTREF00000000000000001 /* PDFScanDetectionTests.swift */,
-			);
-			path = DinkyTests;
-			sourceTree = "<group>";
-		};
 		E168EFE304164DA3B71EFE4F /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,9 +280,57 @@
 				5CBDB8992F9041F600E7E9C0 /* cwebp */,
 				5CBDB89A2F9041F600E7E9C0 /* oxipng */,
 				QP100001000000000000001 /* qpdf */,
+				LM100001000000000000001 /* lame */,
 				5BC7D00FC2B14EF09CB7F833 /* README.md */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		EX100001000000000000001 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AG100001000000000000001 /* View+AdaptiveGlass.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		INTGRP001000000000000001 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				INT10001000000000000001 /* CompressImagesIntent.swift */,
+				INT10002000000000000001 /* CompressPDFIntent.swift */,
+				INT10003000000000000001 /* CompressVideoIntent.swift */,
+				ASH10001000000000000001 /* DinkyAppShortcuts.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		SV100001000000000000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				UC100001000000000000001 /* UpdateChecker.swift */,
+				CU100001000000000000001 /* CompressionUndo.swift */,
+				UD100001000000000000001 /* URLDownloader.swift */,
+				LL100001000000000000001 /* LaunchAtLoginManager.swift */,
+				ICFR1000010000000000001 /* ImageCompressionFormatResolver.swift */,
+				CI100001000000000000001 /* ClipboardImporter.swift */,
+				FW100001000000000000001 /* FolderWatcher.swift */,
+				WR100001000000000000001 /* WatchRegistry.swift */,
+				GH100001000000000000001 /* GlobalHotkeyManager.swift */,
+				DR100001000000000000001 /* DiagnosticsReporter.swift */,
+				FC100001000000000000001 /* FinderCommentsCopier.swift */,
+				DCRERR0001 /* DinkyImageCompression+AppError.swift */,
+				SP100001000000000000001 /* SavingsPerspective.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		XTGRP00000000000000001 /* DinkyTests */ = {
+			isa = PBXGroup;
+			children = (
+				XTREF00000000000000001 /* PDFScanDetectionTests.swift */,
+			);
+			path = DinkyTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +354,7 @@
 				DCI1000010000000000001 /* DinkyCoreImage */,
 				DCS1000010000000000001 /* DinkyCoreShared */,
 				DCV1000010000000000001 /* DinkyCoreVideo */,
+				DCA1000010000000000001 /* DinkyCoreAudio */,
 				DCP1000010000000000001 /* DinkyCorePDF */,
 			);
 			productName = Dinky;
@@ -377,20 +373,14 @@
 			dependencies = (
 			);
 			name = DinkyTests;
-			productName = DinkyTests;
-			productReference = XTPRD00000000000000001 /* DinkyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 			packageProductDependencies = (
 				DCS1000010000000000001 /* DinkyCoreShared */,
 			);
+			productName = DinkyTests;
+			productReference = XTPRD00000000000000001 /* DinkyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
-
-/* Begin PBXContainerItemProxy section */
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXTargetDependency section */
-/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		30998CF249484469BEA4BC05 /* Project object */ = {
@@ -451,6 +441,7 @@
 				5CBDB89D2F9041F600E7E9C0 /* oxipng in Resources */,
 				5CBDB89E2F9041F600E7E9C0 /* cwebp in Resources */,
 				QP000001000000000000001 /* qpdf in Resources */,
+				LM000001000000000000001 /* lame in Resources */,
 				LB000001000000000000001 /* lib in Resources */,
 				HM000001000000000000001 /* Help.md in Resources */,
 				LCAT00000100000000000001 /* Localizable.xcstrings in Resources */,
@@ -460,6 +451,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		RS000001000000000000001 /* Re-sign bundled binaries */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Re-sign bundled binaries";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Re-sign all bundled CLI binaries and dylibs with ad-hoc signatures.\n# Required because install_name_tool invalidates Homebrew-supplied signatures.\nRESOURCES=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources\"\nfor f in \"$RESOURCES/avifenc\" \"$RESOURCES/cwebp\" \"$RESOURCES/oxipng\" \"$RESOURCES/qpdf\" \"$RESOURCES/lame\" \"$RESOURCES\"/lib/*.dylib; do\n  [ -f \"$f\" ] && codesign -s - --force \"$f\"\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		998A23993F5848F1B732DC47 /* Sources */ = {
@@ -527,22 +539,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		RS000001000000000000001 /* Re-sign bundled binaries */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = ();
-			inputFileListPaths = ();
-			inputPaths = ();
-			name = "Re-sign bundled binaries";
-			outputFileListPaths = ();
-			outputPaths = ();
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Re-sign all bundled CLI binaries and dylibs with ad-hoc signatures.\n# Required because install_name_tool invalidates Homebrew-supplied signatures.\nRESOURCES=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources\"\nfor f in \"$RESOURCES/avifenc\" \"$RESOURCES/cwebp\" \"$RESOURCES/oxipng\" \"$RESOURCES/qpdf\" \"$RESOURCES\"/lib/*.dylib; do\n  [ -f \"$f\" ] && codesign -s - --force \"$f\"\ndone\n";
+/* Begin PBXVariantGroup section */
+		HMVGRP00000000000000001 /* Help.md */ = {
+			isa = PBXVariantGroup;
+			children = (
+				HMEN0000000000000000001 /* Help.md */,
+				HMDE0000000000000000001 /* Help.md */,
+				HMES0000000000000000001 /* Help.md */,
+				HMFR0000000000000000001 /* Help.md */,
+				HMIT0000000000000000001 /* Help.md */,
+				HMJA0000000000000000001 /* Help.md */,
+				HMKO0000000000000000001 /* Help.md */,
+				HMNL0000000000000000001 /* Help.md */,
+				HMPT0000000000000000001 /* Help.md */,
+				HMRU0000000000000000001 /* Help.md */,
+				HMTR0000000000000000001 /* Help.md */,
+				HMZH0000000000000000001 /* Help.md */,
+				HMZHT000000000000000001 /* Help.md */,
+			);
+			name = Help.md;
+			sourceTree = "<group>";
 		};
-/* End PBXShellScriptBuildPhase section */
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2590EFF6992F4F13862BEF4F /* Release */ = {
@@ -550,6 +568,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -606,6 +625,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -674,7 +694,7 @@
 				CODE_SIGN_ENTITLEMENTS = Dinky/Dinky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.9.0;
+				CURRENT_PROJECT_VERSION = 2.11.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -687,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.9.0;
+				MARKETING_VERSION = 2.11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -704,7 +724,7 @@
 				CODE_SIGN_ENTITLEMENTS = Dinky/Dinky.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.9.0;
+				CURRENT_PROJECT_VERSION = 2.11.2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
@@ -717,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.9.0;
+				MARKETING_VERSION = 2.11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinky.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -798,10 +818,20 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DCA1000010000000000001 /* DinkyCoreAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */;
+			productName = DinkyCoreAudio;
+		};
 		DCI1000010000000000001 /* DinkyCoreImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */;
 			productName = DinkyCoreImage;
+		};
+		DCP1000010000000000001 /* DinkyCorePDF */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */;
+			productName = DinkyCorePDF;
 		};
 		DCS1000010000000000001 /* DinkyCoreShared */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -812,11 +842,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */;
 			productName = DinkyCoreVideo;
-		};
-		DCP1000010000000000001 /* DinkyCorePDF */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DCI2000010000000000001 /* XCLocalSwiftPackageReference "DinkyCoreImage" */;
-			productName = DinkyCorePDF;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

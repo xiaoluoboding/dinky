@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import DinkyCoreShared
 
 struct ResultsRowView: View {
     /// Fixed blue for progress UI (bar + spinner) so it never picks up multicolor accent or system tint hues.
@@ -90,6 +91,17 @@ struct ResultsRowView: View {
                         .fixedSize()
                         .help(videoExportPolicyChipTooltip())
                         .accessibilityLabel(videoExportPolicyAccessibilityLabel())
+                } else if item.mediaType == .audio {
+                    mediaChip(String(localized: "audio", comment: "Results row: generic audio type chip."))
+                        .help(String(localized: "Audio file", comment: "Tooltip for generic audio type chip."))
+                    if let secs = item.videoDuration {
+                        mediaChip(formattedDuration(secs))
+                            .help(String(localized: "Duration", comment: "Tooltip for audio duration chip."))
+                    }
+                    mediaChip(audioExportPolicyChipText())
+                        .fixedSize()
+                        .help(audioExportPolicyChipTooltip())
+                        .accessibilityLabel(audioExportPolicyAccessibilityLabel())
                 }
 
                 VStack(alignment: .leading, spacing: 1) {
@@ -125,6 +137,7 @@ struct ResultsRowView: View {
                 .animation(.easeInOut(duration: 0.2), value: item.usedFirstFrameOnly)
                 .animation(.easeInOut(duration: 0.2), value: showsImageFormatConversionChip)
                 .animation(.easeInOut(duration: 0.2), value: videoExportPolicyChipText())
+                .animation(.easeInOut(duration: 0.2), value: audioExportPolicyChipText())
                 .animation(.easeInOut(duration: 0.2), value: pdfExportPolicyChipText())
 
                 sizeInfo
@@ -244,6 +257,51 @@ struct ResultsRowView: View {
         videoExportPolicyChipTooltip()
     }
 
+    private var effectiveAudioFormat: AudioConversionFormat {
+        if let p = appliedPreset {
+            return AudioConversionFormat(rawValue: p.audioFormatRaw) ?? .aacM4A
+        }
+        return prefs.audioConversionFormat
+    }
+
+    private var effectiveAudioSmartQuality: Bool {
+        appliedPreset?.smartQuality ?? prefs.smartQuality
+    }
+
+    private var effectiveAudioQualityTier: AudioConversionQualityTier {
+        if let p = appliedPreset {
+            return AudioConversionQualityTier.resolve(p.audioQualityTierRaw)
+        }
+        return prefs.audioQualityTier
+    }
+
+    private func audioExportPolicyChipText() -> String {
+        let fmt = effectiveAudioFormat
+        if effectiveAudioSmartQuality {
+            return "\(fmt.displayName) · " + String(localized: "Smart", comment: "Results row: smart quality short label on chip.")
+        }
+        return "\(fmt.displayName) · \(effectiveAudioQualityTier.displayName)"
+    }
+
+    private func audioExportPolicyChipTooltip() -> String {
+        let fmt = effectiveAudioFormat
+        if effectiveAudioSmartQuality {
+            return String.localizedStringWithFormat(
+                String(localized: "Audio: Smart Quality adjusts %@ picks from bitrate when helpful.", comment: "Results row: audio policy tooltip; format name."),
+                fmt.displayName
+            )
+        }
+        return String.localizedStringWithFormat(
+            String(localized: "Audio: export as %@ at %@ quality.", comment: "Results row: audio policy tooltip."),
+            fmt.displayName,
+            effectiveAudioQualityTier.displayName
+        )
+    }
+
+    private func audioExportPolicyAccessibilityLabel() -> String {
+        audioExportPolicyChipTooltip()
+    }
+
     private var effectivePDFOutputMode: PDFOutputMode {
         if let p = appliedPreset {
             return PDFOutputMode(rawValue: p.pdfOutputModeRaw) ?? .flattenPages
@@ -327,6 +385,9 @@ struct ResultsRowView: View {
         if item.mediaType == .pdf {
             base += ", " + pdfExportPolicyAccessibilityLabel()
         }
+        if item.mediaType == .audio {
+            base += ", " + audioExportPolicyAccessibilityLabel()
+        }
         return base
     }
 
@@ -349,6 +410,8 @@ struct ResultsRowView: View {
                 return preset.outputURL(for: item.sourceURL, mediaType: .pdf, globalPrefs: prefs, isFromURLDownload: urlDL).lastPathComponent
             case .video:
                 return preset.outputURL(for: item.sourceURL, mediaType: .video, globalPrefs: prefs, isFromURLDownload: urlDL).lastPathComponent
+            case .audio:
+                return preset.outputURL(for: item.sourceURL, mediaType: .audio, globalPrefs: prefs, isFromURLDownload: urlDL).lastPathComponent
             }
         }
         switch item.mediaType {
@@ -361,7 +424,7 @@ struct ResultsRowView: View {
                 globalSelectedFormat: selectedFormat
             )
             return prefs.outputURL(for: item.sourceURL, format: fmt, isFromURLDownload: urlDL).lastPathComponent
-        case .pdf, .video:
+        case .pdf, .video, .audio:
             return prefs.outputURL(for: item.sourceURL, mediaType: item.mediaType, isFromURLDownload: urlDL).lastPathComponent
         }
     }
@@ -755,7 +818,7 @@ private struct FileTypeIcon: View {
         case "tiff":              return Color(red: 0.18, green: 0.78, blue: 0.52) // green
         case "bmp":               return Color(red: 0.96, green: 0.30, blue: 0.54) // pink
         case "pdf":               return Color(red: 0.92, green: 0.18, blue: 0.18) // red
-        case "mp4", "mov", "m4v": return Color(red: 0.55, green: 0.28, blue: 0.95) // purple
+        case "mp4", "mov", "m4v", "avi", "webm": return Color(red: 0.55, green: 0.28, blue: 0.95) // purple
         case "webp", "avif":      return Color.secondary
         default:                  return Color.secondary
         }

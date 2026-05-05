@@ -74,6 +74,8 @@ dinky compress-video <file>... [options]
 - `--codec` `h264|hevc` (ProRes is not supported)
 - `--remove-audio` / `--keep-audio`
 - `--max-height` — max output height (lines)
+- `--max-fps` `60|30|24|15` — cap output frame rate when source runs higher
+- `--no-fps-cap` — keep source frame rate (overrides preset)
 - `--smart-quality` / `--no-smart-quality`
 - `-o`, `--output-dir`, `--json`, `--collision-style`, `--collision-pattern`
 - **Presets:** same trio as images; scope must include **videos**.
@@ -175,6 +177,8 @@ HTTP **200** if all files OK, **422** if any failed (image/video/PDF). **503** i
   "codec": "hevc",
   "removeAudio": false,
   "maxHeight": 1080,
+  "maxFPS": 30,
+  "fpsCapEnabled": true,
   "smartQuality": true
 }
 ```

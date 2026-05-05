@@ -87,6 +87,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         "com.adobe.pdf",
         "public.mpeg-4", "com.apple.quicktime-movie", "public.m4v-video",
         "public.avi",
+        "org.webmproject.webm",
     ]
 
     private func acceptedURLs(from urls: [URL]) -> [URL] {

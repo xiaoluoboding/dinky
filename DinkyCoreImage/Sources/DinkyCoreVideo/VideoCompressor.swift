@@ -143,6 +143,8 @@ public enum VideoCompressor: Sendable {
         codec: VideoCodecFamily,
         removeAudio: Bool,
         maxResolutionLines: Int? = nil,
+        maxFPSEnabled: Bool = false,
+        storedMaxFPS: Int = VideoFPSCapPreset.defaultStoredFPS,
         outputURL: URL,
         progressHandler: (@Sendable (Float) -> Void)? = nil
     ) async throws -> ResolvedExport {
@@ -153,6 +155,8 @@ public enum VideoCompressor: Sendable {
             codec: codec,
             removeAudio: removeAudio,
             maxResolutionLines: maxResolutionLines,
+            maxFPSEnabled: maxFPSEnabled,
+            storedMaxFPS: storedMaxFPS,
             outputURL: outputURL,
             progressHandler: progressHandler
         )
@@ -166,6 +170,8 @@ public enum VideoCompressor: Sendable {
         codec: VideoCodecFamily,
         removeAudio: Bool,
         maxResolutionLines: Int? = nil,
+        maxFPSEnabled: Bool = false,
+        storedMaxFPS: Int = VideoFPSCapPreset.defaultStoredFPS,
         outputURL: URL,
         progressHandler: (@Sendable (Float) -> Void)? = nil
     ) async throws -> ResolvedExport {
@@ -181,6 +187,14 @@ public enum VideoCompressor: Sendable {
         let formatDescriptions = try await videoTrack.load(.formatDescriptions)
         let primarySub: CMVideoCodecType? = formatDescriptions.first.map { CMFormatDescriptionGetMediaSubType($0) }
         let estimatedRate = try await videoTrack.load(.estimatedDataRate)
+        let nominalFPS = try await videoTrack.load(.nominalFrameRate)
+        let effectiveFPSCap = VideoFPSCapPreset.effectiveCapFPS(
+            enabled: maxFPSEnabled,
+            storedFPS: storedMaxFPS,
+            sourceNominalFPS: nominalFPS
+        )
+        let needsFPSComposition = effectiveFPSCap != nil
+
         let originalBytes = (try? sourceForMetadata.resourceValues(forKeys: [.fileSizeKey]).fileSize)
             .flatMap { Int64($0) } ?? 0
 
@@ -197,12 +211,47 @@ public enum VideoCompressor: Sendable {
             isHEVC: primarySub == kCMVideoCodecType_HEVC,
             originalBytes: originalBytes,
             estimatedRate: estimatedRate
-        ) {
+        ), !needsFPSComposition {
             throw VideoCompressionError.alreadyOptimized
         }
 
         let exportAsset: AVAsset
-        if removeAudio {
+        var videoComposition: AVVideoComposition?
+        if needsFPSComposition, let cap = effectiveFPSCap {
+            let composition = AVMutableComposition()
+            guard let compositionVideo = composition.addMutableTrack(
+                withMediaType: .video,
+                preferredTrackID: kCMPersistentTrackID_Invalid
+            ) else {
+                throw VideoCompressionError.exportSessionUnavailable
+            }
+            try compositionVideo.insertTimeRange(
+                CMTimeRange(start: .zero, duration: duration),
+                of: videoTrack,
+                at: .zero
+            )
+            if !removeAudio {
+                let audioTracks = try await asset.loadTracks(withMediaType: .audio)
+                if let srcAudio = audioTracks.first,
+                   let compositionAudio = composition.addMutableTrack(
+                    withMediaType: .audio,
+                    preferredTrackID: kCMPersistentTrackID_Invalid
+                   ) {
+                    try compositionAudio.insertTimeRange(
+                        CMTimeRange(start: .zero, duration: duration),
+                        of: srcAudio,
+                        at: .zero
+                    )
+                }
+            }
+            exportAsset = composition
+            videoComposition = try await makeFPSCapVideoComposition(
+                compositionVideoTrack: compositionVideo,
+                sourceVideoTrack: videoTrack,
+                duration: duration,
+                cappedFPS: cap
+            )
+        } else if removeAudio {
             let composition = AVMutableComposition()
             let compositionTrack = composition.addMutableTrack(
                 withMediaType: .video,
@@ -218,7 +267,7 @@ public enum VideoCompressor: Sendable {
             exportAsset = asset
         }
 
-        let usePassthrough = removeAudio && sourceMatchesTarget
+        let usePassthrough = removeAudio && sourceMatchesTarget && !needsFPSComposition
         let resolvedPreset: String
         if let lines = maxResolutionLines, let p = VideoQuality.exportPreset(forMaxHeight: lines, codec: effectiveCodec) {
             resolvedPreset = p
@@ -232,6 +281,9 @@ public enum VideoCompressor: Sendable {
         }
 
         session.shouldOptimizeForNetworkUse = true
+        if let videoComposition {
+            session.videoComposition = videoComposition
+        }
 
         if !usePassthrough, quality == .medium {
             session.canPerformMultiplePassesOverSourceMediaData = true
@@ -252,6 +304,30 @@ public enum VideoCompressor: Sendable {
             codec: effectiveCodec,
             isHDR: isHDR
         )
+    }
+
+    private static func makeFPSCapVideoComposition(
+        compositionVideoTrack: AVAssetTrack,
+        sourceVideoTrack: AVAssetTrack,
+        duration: CMTime,
+        cappedFPS: Int
+    ) async throws -> AVMutableVideoComposition {
+        let instruction = AVMutableVideoCompositionInstruction()
+        instruction.timeRange = CMTimeRange(start: .zero, duration: duration)
+
+        let layer = AVMutableVideoCompositionLayerInstruction(assetTrack: compositionVideoTrack)
+        let transform = try await sourceVideoTrack.load(.preferredTransform)
+        layer.setTransform(transform, at: .zero)
+        instruction.layerInstructions = [layer]
+
+        let naturalSize = try await sourceVideoTrack.load(.naturalSize)
+        let rot = naturalSize.applying(transform)
+
+        let vc = AVMutableVideoComposition()
+        vc.instructions = [instruction]
+        vc.renderSize = CGSize(width: abs(rot.width), height: abs(rot.height))
+        vc.frameDuration = CMTime(value: 1, timescale: CMTimeScale(clamping: cappedFPS))
+        return vc
     }
 
     private static func sourceIsHDR(track: AVAssetTrack, formatDescriptions: [CMFormatDescription]) async -> Bool {

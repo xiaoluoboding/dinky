@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compare Dinky — images, video &amp; PDFs on macOS</title>
-  <meta name="description" content="See how Dinky stacks up against other Mac compression tools by category—images, video, and PDFs—with links to full comparisons." />
+  <title>Compare Dinky — images, video, audio &amp; PDFs on macOS</title>
+  <meta name="description" content="See how Dinky stacks up against other Mac compression tools by category—images, video, audio, and PDFs—with links to full comparisons." />
 
   <link rel="canonical" href="https://dinkyfiles.com/compare/" />
+  <link rel="dns-prefetch" href="https://binkyfiles.com" />
+  <link rel="preconnect" href="https://binkyfiles.com" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/compare.css" />
   <link rel="stylesheet" href="/compare-hub.css" />
   <link rel="stylesheet" href="/site-tabs.css" />
 
   <meta property="og:title" content="Compare Dinky — macOS compression" />
-  <meta property="og:description" content="Category-by-category comparison table and links to full write-ups vs ImageOptim, HandBrake, Preview, and more." />
+  <meta property="og:description" content="Category-by-category comparison table and links to full write-ups vs ImageOptim, HandBrake, Preview, and more — including images, video, audio, and PDFs." />
   <meta property="og:image" content="https://dinkyfiles.com/screenshots/og-image.png" />
   <meta property="og:url" content="https://dinkyfiles.com/compare/" />
   <meta property="og:type" content="website" />
@@ -32,7 +34,7 @@
       {
         "@type": "WebPage",
         "name": "Compare Dinky",
-        "description": "Overview of how Dinky compares to other Mac tools for images, video, and PDFs, with links to detailed pages.",
+        "description": "Overview of how Dinky compares to other Mac tools for images, video, audio, and PDFs, with links to detailed pages.",
         "url": "https://dinkyfiles.com/compare/",
         "isPartOf": { "@type": "WebSite", "name": "Dinky", "url": "https://dinkyfiles.com" }
       },
@@ -75,14 +77,15 @@
         <div class="cmp-row">
           <div class="cmp-text-card">
             <h2 class="cmp-title">Dinky in size* only</h2>
-            <p class="cmp-desc">Most image tools don't do PDFs. Most PDF tools don't do video. Dinky covers all three — includes optional scan OCR before PDF compression — free, open source, and tiny.</p>
-            <p class="cmp-footnote">*We don't want you to give up quality for a smaller footprint — Dinky stays light without cutting corners on how your images, video, and PDFs look.</p>
+            <p class="cmp-desc">Most tools pick one specialty. Dinky covers stills, MP4 shrink, PDF compression, <em>and</em> audio cross-converts — optional scan OCR before PDF encoding — free, open source, and tiny.</p>
+            <p class="cmp-footnote">*We don't want you to give up quality for a smaller footprint — Dinky stays light without cutting corners on how your images, video, audio, and PDFs look.</p>
           </div>
           <div class="comparison-card">
         <div class="cmp-mobile-tabs">
           <div class="cmp-segmented" role="tablist" aria-label="Compare Dinky against">
             <button class="cmp-tab is-active" type="button" role="tab" aria-selected="true" data-cat="image">Image</button>
             <button class="cmp-tab" type="button" role="tab" aria-selected="false" data-cat="video">Video</button>
+            <button class="cmp-tab" type="button" role="tab" aria-selected="false" data-cat="audio">Audio</button>
             <button class="cmp-tab" type="button" role="tab" aria-selected="false" data-cat="pdf">PDF</button>
           </div>
         </div>
@@ -111,6 +114,14 @@
                     <button class="th-cycle-btn" type="button" data-dir="1" aria-label="Next video tool"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 4.53a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"/></svg></button>
                   </div>
                 </th>
+                <th scope="col" class="th-cycle" data-cat="audio">
+                  <div class="th-cat">Audio</div>
+                  <div class="th-cycle-row">
+                    <button class="th-cycle-btn" type="button" data-dir="-1" aria-label="Previous audio tool"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd"/></svg></button>
+                    <span class="th-tool" data-slot="audio">Clop</span>
+                    <button class="th-cycle-btn" type="button" data-dir="1" aria-label="Next audio tool"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 4.53a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd"/></svg></button>
+                  </div>
+                </th>
                 <th scope="col" class="th-cycle" data-cat="pdf">
                   <div class="th-cat">PDF</div>
                   <div class="th-cycle-row">
@@ -130,6 +141,7 @@
                 <td class="cmp-dinky">Free</td>
                 <td data-col="image" data-row="price"></td>
                 <td data-col="video" data-row="price"></td>
+                <td data-col="audio" data-row="price"></td>
                 <td data-col="pdf" data-row="price"></td>
               </tr>
               <tr>
@@ -140,6 +152,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="mac"></td>
                 <td data-col="video" data-row="mac"></td>
+                <td data-col="audio" data-row="mac"></td>
                 <td data-col="pdf" data-row="mac"></td>
               </tr>
               <tr>
@@ -150,6 +163,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="batch"></td>
                 <td data-col="video" data-row="batch"></td>
+                <td data-col="audio" data-row="batch"></td>
                 <td data-col="pdf" data-row="batch"></td>
               </tr>
               <tr>
@@ -160,6 +174,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="presets"></td>
                 <td data-col="video" data-row="presets"></td>
+                <td data-col="audio" data-row="presets"></td>
                 <td data-col="pdf" data-row="presets"></td>
               </tr>
               <tr>
@@ -170,6 +185,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="watch"></td>
                 <td data-col="video" data-row="watch"></td>
+                <td data-col="audio" data-row="watch"></td>
                 <td data-col="pdf" data-row="watch"></td>
               </tr>
               <tr>
@@ -180,6 +196,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="strip"></td>
                 <td data-col="video" data-row="strip"></td>
+                <td data-col="audio" data-row="strip"></td>
                 <td data-col="pdf" data-row="strip"></td>
               </tr>
               <tr>
@@ -190,6 +207,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="transcode"></td>
                 <td data-col="video" data-row="transcode"></td>
+                <td data-col="audio" data-row="transcode"></td>
                 <td data-col="pdf" data-row="transcode"></td>
               </tr>
               <tr>
@@ -200,6 +218,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="local"></td>
                 <td data-col="video" data-row="local"></td>
+                <td data-col="audio" data-row="local"></td>
                 <td data-col="pdf" data-row="local"></td>
               </tr>
               <tr>
@@ -210,6 +229,7 @@
                 <td class="cmp-dinky"><svg class="cmp-check" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"/></svg></td>
                 <td data-col="image" data-row="cli"></td>
                 <td data-col="video" data-row="cli"></td>
+                <td data-col="audio" data-row="cli"></td>
                 <td data-col="pdf" data-row="cli"></td>
               </tr>
               <tr>
@@ -217,9 +237,10 @@
                   <svg class="cmp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.378 1.602a.75.75 0 0 0-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03ZM21.75 7.93l-9 5.25v9l8.628-5.032A.75.75 0 0 0 21.75 16.5V7.93ZM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 0 0 .372.648l8.628 5.033Z"/></svg>
                   App size
                 </div></td>
-                <td class="cmp-dinky">33 MB</td>
+                <td class="cmp-dinky">35 MB</td>
                 <td data-col="image" data-row="size"></td>
                 <td data-col="video" data-row="size"></td>
+                <td data-col="audio" data-row="size"></td>
                 <td data-col="pdf" data-row="size"></td>
               </tr>
             </tbody>
@@ -241,7 +262,7 @@
             <a class="cmp-writeups-suite-card" href="/compare/picmal/">
               <span class="cmp-writeups-suite-card-kicker">Dinky vs Picmal</span>
               <span class="cmp-writeups-suite-card-name">Picmal</span>
-              <p class="cmp-writeups-suite-card-desc">Paid Mac suite for images, video, PDFs, and audio in a larger install. Compare when open source, zero license cost, and a ~33 MB footprint matter more than an all-in-one paid bundle.</p>
+              <p class="cmp-writeups-suite-card-desc">Paid Mac suite for images, video, PDFs, and audio in a larger install. Compare when open source, zero license cost, and a ~35 MB footprint matter more than an all-in-one paid bundle.</p>
               <span class="cmp-writeups-suite-card-cta">Full comparison →</span>
             </a>
           </div>
@@ -249,7 +270,7 @@
         <div class="cmp-writeups-specialists">
           <div class="cmp-writeups-specialists-intro">
             <h2 class="cmp-writeups-specialists-title" id="cmp-writeups-specialists-heading">How Dinky stacks up</h2>
-            <p class="cmp-writeups-specialists-lead">Each page is Dinky vs one other app—images, video, or PDFs.</p>
+            <p class="cmp-writeups-specialists-lead">Each page is Dinky vs one other app—images, video, audio, or PDFs.</p>
           </div>
           <div class="cmp-writeups-grid">
             <div class="cmp-writeups-col">
@@ -273,10 +294,21 @@
               </ul>
             </div>
             <div class="cmp-writeups-col">
+              <h3 class="cmp-writeups-cat">Audio</h3>
+              <ul class="cmp-writeups-list">
+                <li><a href="/compare/clop/">Clop</a></li>
+                <li><a href="/compare/picmal/">Picmal</a></li>
+                <li><a href="/compare/permute/">Permute</a></li>
+                <li><a href="/compare/xld/">XLD</a></li>
+                <li><a href="/compare/freac/">fre:ac</a></li>
+              </ul>
+            </div>
+            <div class="cmp-writeups-col">
               <h3 class="cmp-writeups-cat">PDF</h3>
               <ul class="cmp-writeups-list">
                 <li><a href="/compare/adobe-acrobat/">Acrobat</a></li>
                 <li><a href="/compare/preview/">Preview</a></li>
+                <li><a href="/compare/pdf-expert/">PDF Expert</a></li>
                 <li><a href="/compare/pdf-squeezer/">PDF Squeezer</a></li>
                 <li><a href="/compare/smallpdf/">Smallpdf</a></li>
               </ul>
@@ -288,14 +320,14 @@
       <section class="compare-cta" aria-labelledby="compare-cta-title-hub">
         <div class="compare-cta-inner">
           <div class="compare-cta-media">
-            <img src="/screenshots/screenshot-preset-selected.webp" alt="Dinky main window showing still image, video, and PDF compression presets selected" loading="lazy" decoding="async" />
+            <img src="/screenshots/screenshot-preset-selected.webp?v=20260503" alt="Dinky main window showing still image, video, audio, and PDF compression presets selected" loading="lazy" decoding="async" />
           </div>
           <div class="compare-cta-body">
             <p class="compare-cta-eyebrow">Free · Open source · Local</p>
             <h2 id="compare-cta-title-hub" class="compare-cta-title">Dinky makes files smaller.</h2>
-            <p class="compare-cta-lead">Dinky is a native Mac drop zone for stills, video, and PDFs—presets, batch, URL drop, and Finder Quick Actions, with everything staying on your disk. Free, open source, and tiny.</p>
+            <p class="compare-cta-lead">Dinky is a native Mac drop zone for stills, video, audio, and PDFs—presets, batch, URL drop, and Finder Quick Actions, with everything staying on your disk. Free, open source, and tiny.</p>
             <div class="compare-cta-actions">
-              <a class="btn btn-primary" href="https://github.com/heyderekj/dinky/releases/download/v2.9.0/Dinky-2.9.0.dmg" onclick="if(window.fathom)fathom.trackEvent('Download macOS compare-cta-hub');">
+              <a class="btn btn-primary" href="https://github.com/heyderekj/dinky/releases/download/v2.11.2/Dinky-2.11.2.dmg" onclick="if(window.fathom)fathom.trackEvent('Download macOS compare-cta-hub');">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
                   <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
                 </svg>
@@ -303,7 +335,7 @@
               </a>
               <a class="btn btn-secondary" href="https://dinkyfiles.com/#features">Learn more</a>
             </div>
-            <p class="version">33 MB · v2.9.0 · Requires macOS 15 Sequoia</p>
+            <p class="version">35 MB · v2.11.2 · Requires macOS 15 Sequoia</p>
           </div>
         </div>
       </section>
@@ -334,6 +366,7 @@
           { name: 'Preview',       data: { price: 'Free',     mac: CHECK, batch: CROSS,     presets: CROSS, watch: CROSS, strip: CROSS, local: CHECK, size: 'Built-in', transcode: CROSS, cli: CROSS } },
           { name: 'Adobe Acrobat', data: { price: '$$',       mac: CHECK, batch: 'Limited', presets: CHECK, watch: CROSS, strip: CHECK, local: CHECK, size: '500+ MB', transcode: CROSS, cli: 'Enterprise' } },
           { name: 'PDF Squeezer',  data: { price: 'Paid',     mac: CHECK, batch: CHECK,     presets: CHECK, watch: CHECK, strip: CHECK, local: CHECK, size: '20 MB',   transcode: CROSS, cli: CROSS } },
+          { name: 'PDF Expert',    data: { price: 'Paid',     mac: CHECK, batch: CROSS,     presets: CROSS, watch: CROSS, strip: CROSS, local: CHECK, size: '~100 MB', transcode: CROSS, cli: CROSS } },
           { name: 'Smallpdf',      data: { price: 'Freemium', mac: 'Web', batch: 'Limited', presets: CROSS, watch: CROSS, strip: CROSS, local: CROSS, size: 'Web',    transcode: CROSS, cli: 'API' } },
           { name: 'Clop',          data: { price: 'Freemium', mac: CHECK, batch: CHECK,     presets: CHECK, watch: 'Pro', strip: CHECK, local: CHECK, size: '~90 MB',  transcode: CROSS, cli: CHECK } },
           { name: 'Picmal',        data: { price: 'Paid',     mac: CHECK, batch: CHECK,     presets: CHECK, watch: CROSS, strip: CHECK, local: CHECK, size: '330 MB',  transcode: CROSS, cli: CROSS } }
@@ -346,9 +379,16 @@
           { name: 'Clop',       data: { price: 'Freemium', mac: CHECK, batch: CHECK, presets: CHECK,    watch: 'Pro', strip: CHECK, local: CHECK, size: '~90 MB',  transcode: CHECK,    cli: CHECK } },
           { name: 'Picmal',     data: { price: 'Paid',     mac: CHECK, batch: CHECK, presets: CHECK,    watch: CROSS, strip: CHECK, local: CHECK, size: '330 MB',  transcode: CHECK,    cli: CROSS } },
           { name: 'QuickTime',  data: { price: 'Free',     mac: CHECK, batch: CROSS, presets: CROSS,    watch: CROSS, strip: CROSS, local: CHECK, size: 'Built-in', transcode: 'Limited', cli: CROSS } }
+        ],
+        audio: [
+          { name: 'Clop',         data: { price: 'Freemium', mac: CHECK, batch: CHECK, presets: CHECK,    watch: 'Pro',     strip: CHECK, local: CHECK, size: '~90 MB',  transcode: CHECK, cli: CHECK } },
+          { name: 'Picmal',       data: { price: 'Paid',     mac: CHECK, batch: CHECK, presets: CHECK,    watch: CROSS,     strip: CHECK, local: CHECK, size: '330 MB',  transcode: CHECK, cli: CROSS } },
+          { name: 'Permute',      data: { price: 'Paid',     mac: CHECK, batch: CHECK, presets: CHECK,    watch: CROSS,     strip: CHECK, local: CHECK, size: '~60 MB',  transcode: CHECK, cli: CROSS } },
+          { name: 'XLD',          data: { price: 'Free',     mac: CHECK, batch: CHECK, presets: CROSS,    watch: CROSS,     strip: CHECK, local: CHECK, size: '~5 MB',   transcode: CHECK, cli: CROSS } },
+          { name: 'fre:ac',       data: { price: 'Free',     mac: CHECK, batch: CHECK, presets: CROSS,    watch: CROSS,     strip: CHECK, local: CHECK, size: '~25 MB',  transcode: CHECK, cli: CHECK } }
         ]
       };
-      const idx = { image: 0, pdf: 0, video: 0 };
+      const idx = { image: 0, pdf: 0, video: 0, audio: 0 };
 
       function paint(cat) {
         const tool = tools[cat][idx[cat]];
@@ -360,7 +400,7 @@
         });
       }
 
-      ['image', 'video', 'pdf'].forEach(paint);
+      ['image', 'video', 'audio', 'pdf'].forEach(paint);
 
       document.querySelectorAll('.th-cycle').forEach(th => {
         const cat = th.getAttribute('data-cat');

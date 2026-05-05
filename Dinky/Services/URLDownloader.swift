@@ -1,3 +1,4 @@
+import DinkyCoreShared
 import Foundation
 import os.log
 
@@ -135,7 +136,7 @@ enum URLDownloader {
         if !last.isEmpty, last != "/", last.contains(".") {
             return sanitizeFilename(last)
         }
-        let ext = extensionForMime(response.mimeType) ?? url.pathExtension.lowercased()
+        let ext = MediaDownloadMIME.pathExtension(for: response.mimeType) ?? url.pathExtension.lowercased()
         let stem = url.host ?? "download"
         return sanitizeFilename("\(stem)-\(UUID().uuidString.prefix(8)).\(ext.isEmpty ? "bin" : ext)")
     }
@@ -173,26 +174,6 @@ enum URLDownloader {
             n += 1
         }
         return candidate
-    }
-
-    private static func extensionForMime(_ mime: String?) -> String? {
-        guard let m = mime?.lowercased() else { return nil }
-        switch m {
-        case "image/jpeg": return "jpg"
-        case "image/png": return "png"
-        case "image/webp": return "webp"
-        case "image/avif": return "avif"
-        case "image/heic", "image/heif": return "heic"
-        case "image/tiff": return "tiff"
-        case "image/bmp": return "bmp"
-        case "application/pdf": return "pdf"
-        case "video/mp4": return "mp4"
-        case "video/quicktime": return "mov"
-        default:
-            if m.hasPrefix("image/") { return "jpg" }
-            if m.hasPrefix("video/") { return "mp4" }
-            return nil
-        }
     }
 
 }

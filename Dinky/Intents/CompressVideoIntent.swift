@@ -8,7 +8,7 @@ struct CompressVideoIntent: AppIntent {
     )
     static var description = IntentDescription(
         LocalizedStringResource(
-            "Compresses video files to MP4 using Dinky and returns the compressed files. Uses codec, quality, audio removal, and max resolution from the app’s Settings.",
+            "Compresses video files to MP4 using Dinky and returns the compressed files. Uses codec, quality, audio removal, max resolution, and optional frame-rate cap from the app’s Settings.",
             comment: "Shortcuts app: video intent description."
         ),
         categoryName: LocalizedStringResource("Video", comment: "Shortcuts app: video intent category.")
@@ -51,6 +51,8 @@ struct CompressVideoIntent: AppIntent {
                 codec: settings.codec,
                 removeAudio: settings.removeAudio,
                 maxResolutionLines: settings.maxResolutionLines,
+                maxFPSEnabled: settings.fpsCapEnabled,
+                storedMaxFPS: settings.fpsCap,
                 outputURL: tmpOut,
                 videoContentType: nil,
                 progressHandler: nil

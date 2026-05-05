@@ -43,6 +43,7 @@ final class UpdateChecker: ObservableObject {
     /// stay silent so the app never nags the user on launch.
     enum CheckResult {
         case updateAvailable(version: String)
+        case updateAvailableMissingAsset(version: String)
         case upToDate
         case failed
     }
@@ -87,13 +88,14 @@ final class UpdateChecker: ObservableObject {
 
             // Prefer the zip for in-app install (no hdiutil, no Gatekeeper scan).
             // Fall back to DMG if zip isn't present (older releases).
-            let asset = release.assets.first(where: { $0.name.lowercased().hasSuffix(".zip") })
-                     ?? release.assets.first(where: { $0.name.lowercased().hasSuffix(".dmg") })
-                     ?? release.assets.first
-
             availableVersion = remote
             releaseURL = URL(string: release.html_url)
+            let asset = release.assets.first(where: { $0.name.lowercased().hasSuffix(".zip") })
+                     ?? release.assets.first(where: { $0.name.lowercased().hasSuffix(".dmg") })
             downloadURL = asset.flatMap { URL(string: $0.browser_download_url) }
+            if downloadURL == nil {
+                return .updateAvailableMissingAsset(version: remote)
+            }
             return .updateAvailable(version: remote)
         } catch {
             // Silent failure is intentional for automatic checks. Callers can
@@ -109,7 +111,10 @@ final class UpdateChecker: ObservableObject {
     /// Copying over `Bundle.main.bundleURL` while running hangs — never do that in-process.
     func downloadAndInstall() async {
         guard case .idle = installState else { return }
-        guard let assetURL = downloadURL else { return }
+        guard let assetURL = downloadURL else {
+            installState = .failed(String(localized: "This release has no installable asset yet. Try again in a minute or open What’s new.", comment: "In-app updater: release missing zip/dmg asset."))
+            return
+        }
         installState = .downloading(progress: 0)
 
         do {
