@@ -38,8 +38,14 @@
 - Image engines bundled: cwebp (Google), avifenc (AOM), oxipng (Rust/MIT)
 - Audio: cross-convert via macOS **`afconvert`**; MP3 encode via bundled **`lame`**
 - PDF: flatten via PDFKit + ImageIO; preserve path via bundled **qpdf** + PDFKit; video via AVFoundation export
-- No cloud, no accounts, no telemetry (site uses Fathom analytics, app has none)
+- No cloud, no accounts, no in-app telemetry SDKs
 - Open source: MIT license
+
+## Network behavior
+
+- **Update check:** at most once per 24 hours after the first successful check, the app requests GitHub’s public API for the latest release (`Dinky/Services/UpdateChecker.swift`). No file contents are sent.
+- **Crash diagnostics:** optional in-app toggle; Apple’s MetricKit delivers payloads on-device. Nothing is transmitted until the user chooses email or a prefilled GitHub issue (`Dinky/Services/DiagnosticsReporter.swift`).
+- **URL Drop / Clipboard Compress:** HTTPS download only for a direct file URL you paste or drag; no background pre-fetch. Marketing site **dinkyfiles.com** uses Fathom for page analytics only; the app does not.
 
 ## Comparison
 
