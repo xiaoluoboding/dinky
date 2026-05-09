@@ -553,6 +553,42 @@
       color: inherit;
     }
 
+    .testimonial {
+      margin: 40px auto 40px;
+      max-width: 600px;
+      padding: 28px 32px 24px;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      font-size: 64px;
+      line-height: 1;
+      color: var(--brand);
+      font-family: Georgia, serif;
+    }
+    .testimonial-quote {
+      margin: 0;
+      padding: 0 0 0 28px;
+    }
+    .testimonial-quote p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.65;
+      font-style: italic;
+      color: var(--text);
+    }
+    .testimonial-author {
+      margin-top: 16px;
+      padding-left: 28px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-style: normal;
+      text-align: right;
+    }
+
     .meta-note {
       margin-top: 20px;
       font-size: 13px;
@@ -1785,6 +1821,14 @@
         <p class="ss-card-hero-text">For example, watch a Dropbox-synced folder such as <code>~/Dropbox/Inbox</code> so saves and downloads compress as they appear on disk. <a href="#faq-watch-folder">Cloud folders &amp; details in the FAQ →</a></p>
       </div>
     </div>
+
+    <!-- Testimonial: Jack -->
+    <figure class="testimonial">
+      <blockquote class="testimonial-quote">
+        <p>Just installed it on my Mac and it&rsquo;s fantastic. Not only is it incredibly efficient and fast, but it also has a beautiful UX that is very much appreciated. You can really tell the level of thought and care that went into it. If it was a paid app, I would have happily paid $5 for it, and I think many others would as well.</p>
+      </blockquote>
+      <figcaption class="testimonial-author">&mdash;&thinsp;Jack</figcaption>
+    </figure>
 
     <!-- Row C: Preset summary (card left, image right) -->
     <div class="ss-row is-rev">
