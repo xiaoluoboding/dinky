@@ -56,4 +56,4 @@ Comparison pages — Images: [ImageOptim](https://dinkyfiles.com/compare/imageop
 
 Machine-readable site summary: [llms.txt](https://dinkyfiles.com/llms.txt)
 
-© Testament Made, LLC
+© [Testament Made](https://testamentmade.com), LLC
