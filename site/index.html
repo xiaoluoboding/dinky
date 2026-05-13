@@ -553,6 +553,42 @@
       color: inherit;
     }
 
+    .testimonial {
+      margin: 40px auto 40px;
+      max-width: 600px;
+      padding: 28px 32px 24px;
+      position: relative;
+    }
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      font-size: 64px;
+      line-height: 1;
+      color: var(--brand);
+      font-family: Georgia, serif;
+    }
+    .testimonial-quote {
+      margin: 0;
+      padding: 0 0 0 28px;
+    }
+    .testimonial-quote p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.65;
+      font-style: italic;
+      color: var(--text);
+    }
+    .testimonial-author {
+      margin-top: 16px;
+      padding-left: 28px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-style: normal;
+      text-align: right;
+    }
+
     .meta-note {
       margin-top: 20px;
       font-size: 13px;
@@ -833,6 +869,71 @@
     }
     .copy-btn.copied { color: var(--success); }
 
+    /* Your data (distribution + outbound calls) */
+    .data-blurb {
+      display: grid;
+      grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+      gap: 28px 40px;
+      align-items: start;
+      width: 100%;
+      max-width: 960px;
+      margin-top: 64px;
+      padding: 28px 32px;
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      background: var(--faq-row-even);
+      box-sizing: border-box;
+    }
+    .data-blurb-col--title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .data-blurb-icon {
+      color: var(--brand);
+      line-height: 0;
+    }
+    .data-blurb-icon svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+    .data-blurb-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--text);
+      text-align: left;
+      line-height: 1.25;
+    }
+    .data-blurb-col--body {
+      min-width: 0;
+    }
+    .data-blurb-lead,
+    .data-blurb-body,
+    .data-blurb-sub,
+    .data-blurb-list li {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0 0 12px;
+    }
+    .data-blurb-list {
+      margin: 0 0 0 1.15rem;
+      padding: 0;
+    }
+    .data-blurb-list li + li {
+      margin-top: 8px;
+    }
+    .data-blurb-sub {
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
     /* FAQ */
     .faq {
       width: 100%;
@@ -879,7 +980,8 @@
     /* Same link treatment as footer — secondary + underline; hover to primary text */
     footer a,
     .faq-a a,
-    .cmp-text-card a {
+    .cmp-text-card a,
+    .data-blurb a {
       color: var(--text-secondary);
       text-decoration: underline;
       text-decoration-thickness: 1px;
@@ -887,7 +989,8 @@
     }
     footer a:hover,
     .faq-a a:hover,
-    .cmp-text-card a:hover {
+    .cmp-text-card a:hover,
+    .data-blurb a:hover {
       color: var(--text);
     }
     .faq-inline-link {
@@ -933,6 +1036,11 @@
     }
 
     @media (max-width: 700px) {
+      .data-blurb {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 22px 18px;
+      }
       .faq-grid { grid-template-columns: 1fr; }
       .faq-item:nth-child(-n+2) { border-top: 1px solid var(--divider); padding-top: 24px; }
       .faq-item:first-child { border-top: none; padding-top: 0; }
@@ -1556,7 +1664,7 @@
         GitHub<span id="gh-stars"> · <span class="gh-star-anchor" aria-hidden="true">★</span><span id="gh-stars-count"></span></span>
       </a>
     </div>
-    <p class="version">35 MB · v2.11.2 · Requires macOS 15 Sequoia <button type="button" class="faq-inline-link version-install-link" onclick="if(typeof fathom!=='undefined')fathom.trackEvent('install_modal_from_version'); document.getElementById('install-modal').classList.add('install-modal--help','open')" aria-haspopup="dialog" aria-controls="install-modal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>How to Install</button></p>
+    <p class="version">35 MB · v2.11.2 · Apple Silicon · macOS 15 Sequoia <button type="button" class="faq-inline-link version-install-link" onclick="if(typeof fathom!=='undefined')fathom.trackEvent('install_modal_from_version'); document.getElementById('install-modal').classList.add('install-modal--help','open')" aria-haspopup="dialog" aria-controls="install-modal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>How to Install</button></p>
   </section>
 
   <!-- Install modal -->
@@ -1564,7 +1672,7 @@
     <div class="modal">
       <button class="modal-close" onclick="document.getElementById('install-modal').classList.remove('open','install-modal--help')" aria-label="Close">✕</button>
       <h2>How to install Dinky</h2>
-      <p class="install-modal-lead">Pick the path that fits you — both put Dinky in Applications.</p>
+      <p class="install-modal-lead">Pick the path that fits you — both put Dinky in Applications. Current releases need an <strong>Apple Silicon (M-series) Mac</strong>; Intel-based Macs are not supported.</p>
       <div class="install-modal-tabstrip">
         <div class="cmp-segmented" role="tablist" aria-label="Install method">
           <button type="button" class="cmp-tab is-active" role="tab" aria-selected="true" aria-controls="install-panel-dmg" id="install-tab-dmg" data-install-tab="dmg">Download &amp; install</button>
@@ -1572,7 +1680,7 @@
         </div>
       </div>
       <div id="install-panel-dmg" role="tabpanel" aria-labelledby="install-tab-dmg" data-install-panel="dmg">
-        <p class="install-modal-sublead">macOS will say Dinky can't be opened — that's Gatekeeper, not a virus. Both steps take less than a minute.</p>
+        <p class="install-modal-sublead">If Dinky’s icon in Applications has a <strong>slash through it</strong>, macOS can’t run this build on your Mac (wrong CPU architecture). Current DMGs are <strong>Apple Silicon only</strong>—Intel Macs need a different machine, not another install step. Otherwise, macOS may say Dinky can’t be opened — that’s Gatekeeper, not a virus. The quarantine step below takes less than a minute.</p>
         <ol class="install-steps">
           <li>
             <span>
@@ -1592,7 +1700,7 @@
         </ol>
       </div>
       <div id="install-panel-brew" role="tabpanel" aria-labelledby="install-tab-brew" data-install-panel="brew" hidden>
-        <p class="install-homebrew-note">Requires <a href="https://brew.sh" target="_blank" rel="noopener noreferrer">Homebrew</a>. In Terminal, run once to add this repo as a tap, then install the app:</p>
+        <p class="install-homebrew-note">Requires an <strong>Apple Silicon</strong> Mac, <a href="https://brew.sh" target="_blank" rel="noopener noreferrer">Homebrew</a>, and macOS 15 or later. In Terminal, run once to add this repo as a tap, then install the app:</p>
         <div class="install-code-stack">
           <div class="code-block">
             <code>brew tap heyderekj/dinky https://github.com/heyderekj/dinky</code>
@@ -1620,7 +1728,7 @@
     <div class="modal">
       <button class="modal-close" onclick="document.getElementById('gatekeeper-modal').classList.remove('open')" aria-label="Close">✕</button>
       <h2>macOS blocked Dinky</h2>
-      <p class="gatekeeper-lead">Because Dinky isn't from the App Store, macOS quarantines it on first run. Paste this into Terminal to remove the flag:</p>
+      <p class="gatekeeper-lead">Because Dinky isn’t from the App Store, macOS quarantines it on first run. Paste this into Terminal to remove the flag (this fixes Gatekeeper only — it won’t help if the app icon already has a slash through it on an Intel Mac; those builds need Apple Silicon):</p>
       <div class="code-block">
         <code id="xattr-cmd-gk">xattr -dr com.apple.quarantine /Applications/Dinky.app</code>
         <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
@@ -1713,6 +1821,14 @@
         <p class="ss-card-hero-text">For example, watch a Dropbox-synced folder such as <code>~/Dropbox/Inbox</code> so saves and downloads compress as they appear on disk. <a href="#faq-watch-folder">Cloud folders &amp; details in the FAQ →</a></p>
       </div>
     </div>
+
+    <!-- Testimonial: Jack -->
+    <figure class="testimonial">
+      <blockquote class="testimonial-quote">
+        <p>Just installed it on my Mac and it&rsquo;s fantastic. Not only is it incredibly efficient and fast, but it also has a beautiful UX that is very much appreciated. You can really tell the level of thought and care that went into it. If it was a paid app, I would have happily paid $5 for it, and I think many others would as well.</p>
+      </blockquote>
+      <figcaption class="testimonial-author">&mdash;&thinsp;Jack</figcaption>
+    </figure>
 
     <!-- Row C: Preset summary (card left, image right) -->
     <div class="ss-row is-rev">
@@ -2147,6 +2263,27 @@
     <ul class="reviews-grid" id="reviews-grid"></ul>
   </section>
 
+  <section class="data-blurb" id="data" aria-labelledby="data-heading">
+    <div class="data-blurb-col data-blurb-col--title">
+      <div class="data-blurb-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M12 1.5C9.10051 1.5 6.75 3.85051 6.75 6.75V9.75C5.09315 9.75 3.75 11.0931 3.75 12.75V19.5C3.75 21.1569 5.09315 22.5 6.75 22.5H17.25C18.9069 22.5 20.25 21.1569 20.25 19.5V12.75C20.25 11.0931 18.9069 9.75 17.25 9.75V6.75C17.25 3.85051 14.8995 1.5 12 1.5ZM15.75 9.75V6.75C15.75 4.67893 14.0711 3 12 3C9.92893 3 8.25 4.67893 8.25 6.75V9.75H15.75Z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <h2 class="data-blurb-title" id="data-heading">Your data, in plain English</h2>
+    </div>
+    <div class="data-blurb-col data-blurb-col--body">
+      <p class="data-blurb-lead">Dinky isn&apos;t from the App Store, and the build isn&apos;t notarized today. That&apos;s a distribution choice, not a data choice. The source is on <a href="https://github.com/heyderekj/dinky" target="_blank" rel="noopener">GitHub</a> under MIT so you can read what it does.</p>
+      <p class="data-blurb-body">Compression stays on your Mac. No Dinky cloud, no account. Your files don&apos;t upload to us — only you pick a cloud-synced folder if you want outputs elsewhere.</p>
+      <p class="data-blurb-sub">What leaves the machine</p>
+      <ul class="data-blurb-list">
+        <li>Once a day, Dinky asks GitHub if a newer release exists. That&apos;s the only automatic outbound request (see <a href="https://github.com/heyderekj/dinky/blob/main/Dinky/Services/UpdateChecker.swift" target="_blank" rel="noopener">UpdateChecker.swift</a>).</li>
+        <li>Crash sharing is off by default. When you turn it on, Apple&apos;s MetricKit delivers diagnostics on your Mac. Nothing is sent until you choose Email or a prefilled GitHub issue.</li>
+        <li>URL Drop and Clipboard Compress fetch a file only when you paste or drag a direct link — nothing pre-fetches in the background.</li>
+      </ul>
+    </div>
+  </section>
+
   <section class="faq" id="faq">
     <div class="faq-grid">
       <div class="faq-item">
@@ -2160,8 +2297,8 @@
       </div>
 
       <div class="faq-item">
-        <h3 class="faq-q">What macOS version does it require?</h3>
-        <p class="faq-a">macOS 15 Sequoia or later. On macOS 26 Tahoe you get the full liquid glass UI; on Sequoia it falls back to the frosted material look.</p>
+        <h3 class="faq-q">What Mac and macOS version does it require?</h3>
+        <p class="faq-a"><strong>Apple Silicon</strong> (M-series Mac). Intel-based Macs are not supported for the current DMG and Homebrew cask. <strong>macOS 15 Sequoia</strong> or later. On macOS 26 Tahoe you get the full liquid glass UI; on Sequoia it falls back to the frosted material look.</p>
       </div>
 
       <div class="faq-item">
@@ -2171,7 +2308,12 @@
 
       <div class="faq-item">
         <h3 class="faq-q">Does Dinky send my files anywhere?</h3>
-        <p class="faq-a">Nope. Everything runs locally on your Mac. Your files never leave your machine — no servers, no accounts, no uploads.</p>
+        <p class="faq-a">Nope. Everything runs locally on your Mac — no Dinky servers, no account. Once a day the app checks GitHub for a newer release (that&apos;s the only automatic outbound request). URL Drop only hits a URL you give it. Details: <a href="#data">Your data, in plain English</a>.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-q">Is Dinky notarized? Why isn&apos;t it on the App Store?</h3>
+        <p class="faq-a">It isn&apos;t Apple-notarized or Mac App Store today. That&apos;s distribution — the binary ships straight from GitHub as free MIT open source. For what the app actually talks to over the network, read <a href="#data">Your data, in plain English</a>. First-launch Gatekeeper pain is separate: <button type="button" class="faq-inline-link" onclick="document.getElementById('gatekeeper-modal').classList.add('open')">How to fix it →</button></p>
       </div>
 
       <div class="faq-item">
@@ -2228,7 +2370,7 @@
   </section>
 
   <footer>
-    © Testament Made, LLC · <a href="mailto:help@dinkyfiles.com">help@dinkyfiles.com</a>
+    © <a href="https://testamentmade.com">Testament Made</a>, LLC · <a href="mailto:help@dinkyfiles.com">help@dinkyfiles.com</a>
   </footer>
 
   <script>

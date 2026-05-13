@@ -14,6 +14,11 @@ A small macOS utility that compresses **images**, **videos**, and **PDFs**. Drop
   <img src="site/screenshots/screenshot-watch-folder.webp" width="32%" alt="Watch folder settings: global watch and per-preset watch folders" />
 </p>
 
+## System requirements
+
+- **Apple Silicon** (M-series Mac). Current **2.x** DMG and Homebrew cask builds are not for Intel-based Macs (Finder may show the app icon with a slash through it on the wrong architecture).
+- **macOS 15** (Sequoia) or later.
+
 ## Releases
 
 **1.x** (from 1.0 on) was **images only**. **2.0** added **videos and PDFs** alongside images. Older 1.x DMGs and ZIPs stay on [GitHub Releases](https://github.com/heyderekj/dinky/releases) for anyone who needs them; use the [latest release](https://github.com/heyderekj/dinky/releases/latest) for full format support.
