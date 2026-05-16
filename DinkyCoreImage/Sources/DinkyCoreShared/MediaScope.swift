@@ -90,12 +90,18 @@ public enum MediaTypeDetector: Sendable {
     private static let audioExtensions: Set<String> = ["mp3", "m4a", "aac", "wav", "aif", "aiff", "flac", "caf"]
     /// Video-ish extensions (`m4v`/`mp4`/…); `.m4a` is intentionally handled as audio via `audioExtensions` first.
     private static let videoExtensions: Set<String> = ["mp4", "mov", "m4v", "avi", "webm"]
+    /// Audio containers whose codecs Apple's AudioToolbox cannot decode (AMR family). Rejected so the
+    /// pipeline doesn't try to feed them to afconvert, which fails with `!dat` deep inside the converter.
+    private static let unsupportedAudioExtensions: Set<String> = [
+        "amr", "awb", "3ga", "3gp", "3gpp", "3g2", "3gpp2",
+    ]
 
     public static func detect(_ url: URL) -> MediaType? {
         let ext = url.pathExtension.lowercased()
         if imageExtensions.contains(ext) { return .image }
         if ext == "pdf" { return .pdf }
         if audioExtensions.contains(ext) { return .audio }
+        if unsupportedAudioExtensions.contains(ext) { return nil }
 
         guard let uti = UTType(filenameExtension: ext) else {
             if videoExtensions.contains(ext) { return .video }
@@ -114,8 +120,12 @@ public enum MediaTypeDetector: Sendable {
         if uti.conforms(to: .mpeg4Movie) || uti.conforms(to: .quickTimeMovie) { return .video }
         if uti.conforms(to: .pdf) { return .pdf }
         if uti.conforms(to: .image) { return .image }
-        // Last resort: generic audio UTI (e.g. uncommon extensions).
-        if uti.conforms(to: .audio) { return .audio }
+        // Last resort: generic audio UTI (e.g. uncommon extensions). Denylist guards against AMR-class containers
+        // whose UTI conforms to `.audio` but whose codecs AudioToolbox can't decode.
+        if uti.conforms(to: .audio) {
+            if unsupportedAudioExtensions.contains(ext) { return nil }
+            return .audio
+        }
         return nil
     }
 }
