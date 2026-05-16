@@ -17,6 +17,23 @@ final class MediaTypeDetectorTests: XCTestCase {
         let url = URL(fileURLWithPath: "/tmp/sample.mkv")
         XCTAssertNil(MediaTypeDetector.detect(url))
     }
+
+    func testAMRReturnsNil() {
+        XCTAssertNil(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/voice.amr")))
+    }
+
+    func test3GPVariantsReturnNil() {
+        XCTAssertNil(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/x.3gp")))
+        XCTAssertNil(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/x.3gpp")))
+        XCTAssertNil(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/x.3g2")))
+        XCTAssertNil(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/x.awb")))
+    }
+
+    func testStandardAudioStillDetected() {
+        XCTAssertEqual(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/a.m4a")), .audio)
+        XCTAssertEqual(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/a.mp3")), .audio)
+        XCTAssertEqual(MediaTypeDetector.detect(URL(fileURLWithPath: "/tmp/a.flac")), .audio)
+    }
 }
 
 final class MediaDownloadMIMETests: XCTestCase {

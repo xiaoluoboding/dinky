@@ -45,6 +45,7 @@ enum CompressionError: LocalizedError {
     case imageWriteFailed
     case audioConversionFailed(String)
     case audioNoTrack
+    case audioUnsupportedSource(String)
 
     var errorDescription: String? {
         switch self {
@@ -67,6 +68,9 @@ enum CompressionError: LocalizedError {
             return msg
         case .audioNoTrack:
             return String(localized: "No audio track was found in this file.", comment: "Audio conversion error.")
+        case .audioUnsupportedSource(let cc):
+            return String(localized: "This audio file uses a codec (\(cc)) that macOS can’t decode. Try converting it with another tool first.",
+                          comment: "Audio import error for AMR/3GP and other codecs Apple doesn’t support.")
         }
     }
 }
@@ -312,6 +316,12 @@ actor CompressionService {
         case .noAudioTrack: return .audioNoTrack
         case .lameExecutableRequired: return .binaryNotFound("lame")
         case .afconvertFailed(let m): return .audioConversionFailed(m)
+        case .unsupportedSourceCodec(let cc): return .audioUnsupportedSource(cc)
+        case .unreadableSource:
+            return .audioConversionFailed(String(
+                localized: "Couldn’t read audio data from this file.",
+                comment: "Audio import error when AVFoundation can’t open the asset."
+            ))
         }
     }
 

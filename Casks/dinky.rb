@@ -1,6 +1,6 @@
 cask "dinky" do
-  version "2.11.2"
-  sha256 "396b69d0c041a06125cdd12793be5baa8b133e3c7cd7b26f23691aaba7f392ae"
+  version "2.12.0"
+  sha256 "35bdf4bc9bcf8f3fc84903b74f9159cd1a9964a4ef13d33d041af424c9fb3450"
 
   url "https://github.com/heyderekj/dinky/releases/download/v#{version}/Dinky-#{version}.zip"
   name "Dinky"

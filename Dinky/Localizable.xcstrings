@@ -8161,6 +8161,9 @@
         }
       }
     },
+    "Couldn’t read audio data from this file." : {
+      "comment" : "Audio import error when AVFoundation can’t open the asset."
+    },
     "Couldn’t undo" : {
       "comment" : "Undo error alert title."
     },
@@ -14678,6 +14681,9 @@
           }
         }
       }
+    },
+    "Install unavailable" : {
+      "comment" : "Update banner: release has no downloadable asset yet."
     },
     "Install Update" : {
       "comment" : "Manual update alert.\nUpdate banner primary button.",
@@ -27520,6 +27526,9 @@
         }
       }
     },
+    "This audio file uses a codec (%@) that macOS can’t decode. Try converting it with another tool first." : {
+      "comment" : "Audio import error for AMR/3GP and other codecs Apple doesn’t support."
+    },
     "This does not clear the per-session list in History." : {
       "comment" : "Settings UI.",
       "localizations" : {
@@ -27596,6 +27605,12 @@
           }
         }
       }
+    },
+    "This release has no installable asset yet. Try again in a minute or open What’s new." : {
+      "comment" : "In-app updater: release missing zip/dmg asset."
+    },
+    "This release was published without a zip or DMG asset yet." : {
+      "comment" : "Tooltip for unavailable install state in update banner."
     },
     "Tighter max-size targets only list lower starting tiers; Dinky still steps down through the chain if needed." : {
       "comment" : "Settings UI: PDF max size limits tier chips helper.\nSidebar PDF: max size limits tier chips helper."
@@ -28718,6 +28733,9 @@
         }
       }
     },
+    "Update is published but not installable yet." : {
+      "comment" : "Manual update: release exists but missing downloadable asset."
+    },
     "Use {n} where the number should go — holiday{n} becomes holiday1, holiday2 · Skip {n} and we only add a number if there’s still a clash" : {
       "comment" : "Settings: caption under custom duplicate field."
     },
@@ -29278,6 +29296,9 @@
           }
         }
       }
+    },
+    "Version %@ is on GitHub, but this release doesn't include a zip or DMG yet. Try again in a minute, or open the release page." : {
+      "comment" : "Manual update: missing release assets; argument is version."
     },
     "Version %@ is out. You’re on %@. Want it?" : {
       "comment" : "Manual update alert; arguments are new and current version.",
@@ -30169,7 +30190,7 @@
       "comment" : "Heading above simple-mode outcome rows."
     },
     "What’s new" : {
-      "comment" : "Manual update alert.\nUpdate banner link to release notes.",
+      "comment" : "Manual update alert.\nManual update alert: open release page.\nUpdate banner link to release notes.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
